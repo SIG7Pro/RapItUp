@@ -1,52 +1,23 @@
 Welcome!
+The project here, Rap-It-Up, is still in progress. However, for those who'd like to read further, you may.
 
-This game is still in development.
-
-Placeholder name: RapItUp
+![Salem Icon (50x50 Size)](assets/images/UI/Salem50x50.png)
 
 ---
 
-Inspired by games like Friday Night Funkin' and Parappa The Rapper!
+This game is a soon to be playable rhythm game made in HaxeFlixel, inspired by the likes of [Friday Night Funkin'](https://www.newgrounds.com/portal/view/770371) and Parappa the Rapper.
 
 Still in progress, expect some messy code. Placeholder graphics also used. Arrows from Friday Night Funkin'.
-Shoutouts to Astromina Engine. I'll consider working on that again when I get a good framework for this to get started on. 
 
 ---
 
-#### Requirements:
+Installing this requires compiling it from the source code, because as of writing, there is no proper release.
 
-* Haxe
-* HaxeFlixel
-* Flixel Addons
-* Lime
-* (Haxe) OpenFL (potentially)
-
-Should be simple to install and setup. Try referring to https://haxeflixel.com/documentation/getting-started/ for help.
-
-I'll write a more detailed install and compile list when this is in a more favorable state.
-
-```batch
-haxelib install lime
-haxelib install openfl
-haxelib install flixel
-haxelib run lime setup flixel
-haxelib run lime setup
-haxelib install flixel-addons
-```
-
-command line stuff above
-if you get errors, make an issue, requires a github account
-
+Check out [Compiling.md](Documentation/Compiling.md).
 
 ---
 
-Shoutouts to:
+Special Thanks:
 
-https://www.youtube.com/watch?v=pmD16qjrzoE
-
-How to Create a github repo from the commandline
-by Coder Amrin (582 subscribers) 
-7,215 views  Dec 13, 2021  #frontend #webdevelopment #github
-
-and
-https://github.com/login/device/success
+- My old attempt at a rhythm game. [Astronimu.](https://github.com/SIG7Pro/Astronimu/blob/af4bc3b237fc0193704607741e0bc5b2459fca69/DevDiary.md#day-1--monday-15-may-2023)
+- [Funkin' Crew](https://www.github.com/FunkinCrew) (Inspiration)
