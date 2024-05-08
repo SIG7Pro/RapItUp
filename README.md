@@ -20,4 +20,5 @@ Check out [Compiling.md](Documentation/Compiling.md).
 Special Thanks:
 
 - My old attempt at a rhythm game. [Astronimu.](https://github.com/SIG7Pro/Astronimu/blob/af4bc3b237fc0193704607741e0bc5b2459fca69/DevDiary.md#day-1--monday-15-may-2023)
-- [Funkin' Crew](https://www.github.com/FunkinCrew) (Inspiration)
+- [Friday Night Funkin'](https://www.newgrounds.com/portal/view/770371) by [Funkin' Crew Inc](https://www.github.com/FunkinCrew) (Inspiration.)
+- [Parappa The Rapper by Sony Enterprices](https://www.playstation.com/en-us/games/parappa-the-rapper-remastered/) (Links to the purchase of the remaster.)
