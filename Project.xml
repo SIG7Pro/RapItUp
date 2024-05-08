@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <project xmlns="http://lime.software/project/1.0.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://lime.software/project/1.0.2 http://lime.software/xsd/project-1.0.2.xsd">
 
-	<app title="Rap-it-Up (Working Title)" file="RapItUp" main="Main" version="0.0.1" company="HaxeFlixel"/>
+	<app title="Rap-It-Up" file="RapItUp" main="Main" version="0.0.1" company="AARECo"/>
+	<!-- Removed the "placeholder title" part of the title as I'm considering it being the "final" title as I can't think of a better title. -->
 
 	<app preloader="flixel.system.FlxPreloader"/>
 

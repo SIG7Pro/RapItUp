@@ -5,7 +5,7 @@ import flixel.FlxState;
 
 class TitleState extends FlxState {
 	override function create() {
-		var titleText = new FlxText(20, 0, 0, 'Rap It Up\nPrototype\n(Placeholder Name)');
+		var titleText = new FlxText(20, 0, 0, 'Rap It Up\nPrototype\n(Proto)');
 		titleText.setFormat(22, CENTER);
 		titleText.screenCenter(X);
 		add(titleText);
@@ -15,7 +15,7 @@ class TitleState extends FlxState {
 		add(playButton);
 
 		#if sys
-		var exitButton = new FlxButton(FlxG.width- 28, 8, 'X', click.bind('exit'));
+		var exitButton = new FlxButton((FlxG.width / 2), 8, 'X', click.bind('exit'));
 		add(exitButton);
 		#end
 
