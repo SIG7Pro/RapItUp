@@ -1,15 +1,10 @@
-package;
-
-import flixel.FlxGame;
 import openfl.display.FPS;
-import openfl.display.Sprite;
+import flixel.FlxG;
+import flixel.FlxGame;
 
-class Main extends Sprite
-{
-	public function new()
-	{
-		super();
-		addChild(new FlxGame(0, 0, TitleState));
-		addChild(new FPS(10, 3, 0xFFFFFF));
+class Main extends FlxGame {
+	function new() {
+		super(TitleState);
+		FlxG.stage.addChild(new FPS(10, 3, 0xffffffff));
 	}
 }
