@@ -83,7 +83,7 @@ class Performance extends Sprite
     	performanceText.y = paddingY;
     	performanceText.width = 500;
 		performanceText.selectable = false;
-		performanceText.defaultTextFormat = new TextFormat(font.fontName, 12, 0xededed);
+		performanceText.defaultTextFormat = new TextFormat(font.fontName, 14, 0xededed);
 		performanceText.text = "FPS: 0\nRamery (RAM MEM): 0 MB\nMemory Peak: 0 MB";
 		performanceText.embedFonts = true;
 
@@ -186,15 +186,23 @@ class Performance extends Sprite
         	else if (fpsHistory[i] > 30) color = 0xefbda2;
         	else color = 0xeda0a4;
         	graph.graphics.lineStyle(graphBarTickness, color, 0.5);
-        	graph.graphics.lineTo(graphBarTickness*i+i*graphBarPadding,barHeight-barHeight*fpsHistory[i]/60);
+        	//graph.graphics.lineTo(graphBarTickness*i+i*graphBarPadding,barHeight-barHeight*fpsHistory[i]/60);
+			graph.graphics.lineTo(100,barHeight-barHeight*fpsHistory[i]/60);
         }
 	}
 
 	private function onResize(_):Void
 	{
+		// Black rectangle that covers the top part of the screen.
 		boundData = new BitmapData(Lib.current.stage.stageWidth,fullHeight);
-		boundData.fillRect(new Rectangle(0,0,Lib.current.stage.stageWidth,fullHeight),0x88000000);
+		boundData.fillRect(new Rectangle(0,0,Lib.current.stage.stageWidth / 1,fullHeight),0x00000000);
 		bound.bitmapData = boundData;
+		// (Refering to line #198.)
+		// Color previously 0x88000000 (transparent black), changed to 0x8800A0AC (transparent teal) for testing so its easier to see since all the backdrops
+		// are black, as of writing this and then switched to being fully transparent.
+		// Basically if you divide the width by any amount, a white rectangle gets created from what I assume is the difference.
+		// So setting it to be at "0%" opacity is close to removing the original black rectangle and preventing the white one from
+		// spawning.
 	}
 	
 }
