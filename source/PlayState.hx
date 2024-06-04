@@ -8,14 +8,11 @@ import flixel.FlxState;
 
 
 
-class PlayState extends FlxState {
+class PlayState extends FlxState 
+{
+
 	static inline var placeholderLocation = 'assets/images/Placeholder/';
 	
-	var playArrows = new FlxTypedGroup<FlxSprite>();
-	var hitArrows = new FlxSprite();
-
-
-
 	override function create() {
 
 		trace("PlayState.hx initiated.");
@@ -36,33 +33,6 @@ class PlayState extends FlxState {
 		var easing = FlxEase.quadInOut;
 		FlxTween.tween(placeholderGraphic, {y: plcGrRed.y + 50}, 0.6, {ease: easing, type: PINGPONG, startDelay: 0.1});
 		FlxTween.tween(plcGrRed, {y: plcGrRed.y + 50}, 0.6, {ease: easing, type: PINGPONG});
-
-
-
-
-
-
-		for (i in 0...1) {
-			var playArrow = new FlxSprite().makeGraphic(154, 157, 0xff87a3ad);
-			playArrow.setGraphicSize(playArrow.width * 0.7);
-			playArrow.x = FlxG.width - 15 - (3 * (100 + 30));
-			playArrows.add(playArrow);
-		}
-		add(playArrows);
-
-
-		hitArrows = new FlxSprite();
-		hitArrows.makeGraphic(154, 157, 0xffc24b99);
-		hitArrows.scale.x = 0.7;
-		hitArrows.scale.y = 0.7;
-		hitArrows.x = FlxG.width - 15 - (3 * (100 + 30));
-		hitArrows.y = FlxG.height + 2;
-		add(hitArrows); // EXPERIMENTAL
-
-		FlxTween.tween(hitArrows, {y: 0 - (FlxG.height + 5)}, 2.0);
-		// Last value seems to be the speed. Originally 1.4. The closer to 0, the faster it gets.
-		// Setting the last value to 0.5 makes it really fast! 1.4 is a moderate speed, 2.0 is pretty good.
-		// 157 = Strum height.
 
 		super.create();
 	}
