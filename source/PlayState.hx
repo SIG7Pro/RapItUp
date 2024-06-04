@@ -9,18 +9,23 @@ import flixel.FlxState;
 import flixel.ui.FlxBar; // Health Bar Stuff
 import flixel.ui.FlxButton; // Health Bar Testing
 import flixel.text.FlxText;
+import flixel.input.keyboard.FlxKey;
+
 
 
 class PlayState extends FlxState {
 	static inline var placeholderLocation = 'assets/images/Placeholder/';
-	
-	var playArrows = new FlxTypedGroup<FlxSprite>();
-	var hitArrows = new FlxSprite();
 
 	var healthBar:FlxBar;
 	var health:Float = 50;
 	
 	var scoreTxt:FlxText;
+
+	// lantern engine shiz (hi - ty dot cee ess)
+	var translineArrows:FlxTypedGroup<FlxSprite>;	
+	var mainKeys:Array<Array<FlxKey>> = [[A, LEFT], [S, DOWN], [W, UP], [D, RIGHT]];
+	var isUpscroll:Bool = true;
+
 
 	override function create() {
 
@@ -43,27 +48,10 @@ class PlayState extends FlxState {
 		FlxTween.tween(placeholderGraphic, {y: plcGrRed.y + 50}, 0.6, {ease: easing, type: PINGPONG, startDelay: 0.1});
 		FlxTween.tween(plcGrRed, {y: plcGrRed.y + 50}, 0.6, {ease: easing, type: PINGPONG});
 
-		for (i in 0...1) {
-			var playArrow = new FlxSprite().makeGraphic(154, 157, 0xff87a3ad);
-			playArrow.setGraphicSize(playArrow.width * 0.7);
-			playArrow.x = FlxG.width - 15 - (3 * (100 + 30));
-			playArrows.add(playArrow);
-		}
-		add(playArrows);
+		translineArrows = new FlxTypedGroup<FlxSprite>();
+		add(translineArrows);
 
-
-		hitArrows = new FlxSprite();
-		hitArrows.makeGraphic(154, 157, 0xffc24b99);
-		hitArrows.scale.x = 0.7;
-		hitArrows.scale.y = 0.7;
-		hitArrows.x = FlxG.width - 15 - (3 * (100 + 30));
-		hitArrows.y = FlxG.height + 2;
-		add(hitArrows); // EXPERIMENTAL
-
-		FlxTween.tween(hitArrows, {y: 0 - (FlxG.height + 5)}, 2.0);
-		// Last value seems to be the speed. Originally 1.4. The closer to 0, the faster it gets.
-		// Setting the last value to 0.5 makes it really fast! 1.4 is a moderate speed, 2.0 is pretty good.
-		// 157 = Strum height.
+		makeStrumline();
 
 		super.create();
 		
@@ -85,6 +73,28 @@ class PlayState extends FlxState {
 		
 	}
 
+	public function keyCheck(data:Int)
+	{
+		if (FlxG.keys.anyPressed(mainKeys[data])) 
+		{
+			translineArrows.members[data+4].scale.set(0.95, 0.95);
+		} 
+		else 
+			translineArrows.members[data+4].scale.set(1, 1);
+	}	
+
+	public function makeStrumline()
+	{
+		for (i in 0...2) 
+		{
+			for (j in 0...4) 
+			{
+					var babyArrow:FlxSprite = new FlxSprite(50 + (120 * j) + (FlxG.width / 1.875) * i, isUpscroll ? 50 : FlxG.height - 150).makeGraphic(112, 112, 0xFF666666);
+					babyArrow.alpha = 0.5;
+					translineArrows.add(babyArrow);
+			}
+		}
+	}			
 
 	override function update(elapsed:Float){
 	   //trace("uy.");
@@ -114,6 +124,10 @@ class PlayState extends FlxState {
 	healthBar.value = health;
 	scoreTxt.text = "HP:" + health;
 
+
+		for (i in 0...mainKeys.length) {
+			keyCheck(i);
+		}
 	}
 
 
