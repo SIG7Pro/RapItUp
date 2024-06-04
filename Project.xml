@@ -2,7 +2,6 @@
 <project xmlns="http://lime.software/project/1.0.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://lime.software/project/1.0.2 http://lime.software/xsd/project-1.0.2.xsd">
 
 	<app title="Rap-It-Up" file="RapItUp" main="Main" version="0.0.1" company="AARECo"/>
-	<!-- Removed the "placeholder title" part of the title as I'm considering it being the "final" title as I can't think of a better title. -->
 
 	<app preloader="flixel.system.FlxPreloader"/>
 
@@ -26,10 +25,11 @@
 
 	<source path="source"/>
 
-	<assets path="assets"/>
+	<assets path="assets" exclude="*.psd|*.psb|*.pixil|*.ase"/>
+	<assets path="assets" exclude="assets/project-files"/>
 
 	<haxelib name="flixel"/>
-	<!-- <haxelib name="flixel-addons"/> -->
+	<haxelib name="flixel-addons"/>
 	
 	<haxedef name="FLX_NO_MOUSE" if="mobile" />
 	<haxedef name="FLX_NO_KEYBOARD" if="mobile" />
