@@ -35,7 +35,7 @@ class OptionsState extends FlxState {
 		{
 			//FlxG.camera.fade(FlxColor.BLACK, 0.33, false, function()
 			{
-				FlxG.switchState(TitleState.new);
+				FlxG.switchState(new TitleState());
 			};
 		}
 
