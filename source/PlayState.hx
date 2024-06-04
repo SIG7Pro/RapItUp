@@ -29,6 +29,11 @@ class PlayState extends FlxState {
 
 	override function create() {
 
+		var sprite = new FlxSprite();
+		sprite.makeGraphic(FlxG.width, FlxG.height, FlxColor.BROWN);
+		sprite.screenCenter();
+		add(sprite); // Just so the background behind the placeholder graphics isn't completely black.
+		
 		trace("PlayState.hx initiated.");
 		var placeholderBG = Path.join([placeholderLocation, 'Placeholder 2.png']);
 
