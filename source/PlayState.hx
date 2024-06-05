@@ -6,11 +6,14 @@ import flixel.FlxSprite;
 import haxe.io.Path;
 import flixel.FlxState;
 
+import flixel.util.FlxColor;
+
 import flixel.ui.FlxBar; // Health Bar Stuff
 import flixel.ui.FlxButton; // Health Bar Testing
 import flixel.text.FlxText;
 import flixel.input.keyboard.FlxKey;
 
+import openfl.system.System;
 
 
 class PlayState extends FlxState {
@@ -20,22 +23,28 @@ class PlayState extends FlxState {
 	var health:Float = 50;
 	
 	var scoreTxt:FlxText;
+	var scoreValue:Float = 0;
 
-	// lantern engine shiz (hi - ty dot cee ess)
+	var hpBarOverlay:FlxSprite;
+
+	// lantern engine shiz (hi - ty dot cee ess) // no swearing this is a Christian minecraft server
 	var translineArrows:FlxTypedGroup<FlxSprite>;	
 	var mainKeys:Array<Array<FlxKey>> = [[A, LEFT], [S, DOWN], [W, UP], [D, RIGHT]];
 	var isUpscroll:Bool = true;
+	
+	var mem:Float = Math.round(System.totalMemory / 1024 / 1024 * 100)/100;
+	var memPeak:Float = 0;
 
 
 	override function create() {
-
+		trace(" I Can trace and do\na new line?");
 		var sprite = new FlxSprite();
 		sprite.makeGraphic(FlxG.width, FlxG.height, FlxColor.BROWN);
 		sprite.screenCenter();
 		add(sprite); // Just so the background behind the placeholder graphics isn't completely black.
 		
 		trace("PlayState.hx initiated.");
-		var placeholderBG = Path.join([placeholderLocation, 'Placeholder 2.png']);
+		var placeholderBG = Path.join([placeholderLocation, 'Placeholder.png']);
 
 		var placeholderGraphic = new FlxSprite(placeholderBG);
 		placeholderGraphic.screenCenter();
@@ -62,19 +71,35 @@ class PlayState extends FlxState {
 		
 		
 		
-		//healthBar = new FlxUIBar(0, 0, LEFT_TO_RIGHT, 400, 15, "40", health, 0, 100, true);
-		healthBar = new FlxBar(FlxG.width / 2, FlxG.height - 80, RIGHT_TO_LEFT, 400, 15, null, "health", 0, 100, true);
-		healthBar.createFilledBar(0xFFff1064, 0xFF0cffb6, true);
+		//The HP Bar
+		healthBar = new FlxBar(397 - 1, 625 - 1, RIGHT_TO_LEFT, 593 + 1, 13 + 1, null, "health", 0, 100, false);
+		healthBar.createFilledBar(0xFFff1064, 0xFF0cffb6, false);
 		healthBar.value = health;	
-		
-		scoreTxt = new FlxText(20, FlxG.height - 40, 0, 'Wahoo.');
+		// Score Text (Should be infront of the bar overlay, but its hard to give notice.)
+		scoreTxt = new FlxText(27.08, FlxG.height - 40, 0, 'Wahoo.');
 		scoreTxt.setFormat("assets/fonts/captura-now-regular.otf", 22, LEFT);
-		scoreTxt.screenCenter(X);
-		
+		scoreTxt.x = 770;
+		scoreTxt.y = 656;
+		//scoreTxt.screenCenter(X);
+		// The actual overlay, fantastic.
+		hpBarOverlay = new FlxSprite("assets/images/UI/HPBarOverlay.png");
+		hpBarOverlay.x = 390;
+		hpBarOverlay.y = 617;
+		hpBarOverlay.updateHitbox();
+		/*add(hpBarOverlay);
 		add(healthBar);
-		add(scoreTxt);
+		add(scoreTxt);*/
 
-		
+		for (spr in [scoreTxt, healthBar, hpBarOverlay]) 
+		add(spr);
+
+		//ovrl 390 617
+		//bar 397 625
+
+		// text 770 656 size 27.08 height height minus 510 er 624
+		//idk if it was upscroll it'd be 43 Y text
+		// 2 pixel stroke
+
 		
 	}
 
@@ -102,32 +127,38 @@ class PlayState extends FlxState {
 	}			
 
 	override function update(elapsed:Float){
+	
+	if (mem > memPeak) memPeak = mem;
+	
+	
 	   //trace("uy.");
 		if (FlxG.keys.anyPressed( [ESCAPE, BACKSPACE] ) )
 			{
 				FlxG.switchState(new TitleState());
-				trace("🏳‍🌈If this doesn't trace, its gay🏳‍🌈.");
+				//trace("🏳‍🌈If this doesn't trace, its gay🏳‍🌈.");
 			}
 		if (FlxG.keys.anyPressed( [O, P] ) )
 			{
 				FlxG.switchState(new OptionsState());
-				trace("🏳‍⚧If this doesn't trace, its trans🏳‍⚧.");
+				//trace("🏳‍⚧If this doesn't trace, its trans🏳‍⚧.");
 			}
-		#if debug
-		if (FlxG.keys.anyPressed([W, UP]) )
+		//#if debug
+		if (FlxG.keys.anyPressed([I, R]) )
 			{
-				health += 10;
+				scoreValue += 2;
+				health += 2;
 				//trace("🏳‍⚧Isdf.");
 			}
-		if (FlxG.keys.anyPressed([S, DOWN]) )
+		if (FlxG.keys.anyPressed([K, F]) )
 			{
-				health -= 10;
+				scoreValue -= 2;
+				health -= 2;
 				//trace("🏳‍🌈Isdf.");
 			}
-		#end
+		//#end
 			
 	healthBar.value = health;
-	scoreTxt.text = "HP:" + health;
+	scoreTxt.text = "Tracked:" + scoreValue + "\n" + mem + "/" + memPeak + "MB";
 
 
 		for (i in 0...mainKeys.length) {

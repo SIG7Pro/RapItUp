@@ -52,10 +52,32 @@ var linuxPrettyName:String = 'cat /etc/*-release | grep "PRETTY_NAME" | sed ' + 
 		white.updateHitbox();
 		white.y = 503 - 4;
 		add(white);
-
-	
-	
-	
+		
+		
+		// Positioning
+		/*
+		
+		Focus: 413 x 192 wait i exported these all at full size
+		:facepalm:
+		
+		
+		*/
+		
+		var mainFocus = new FlxSprite();
+		mainFocus.loadGraphic(titleDirectory + "Fellas/Main.png");
+		mainFocus.updateHitbox();
+		
+		var reflectionSprite = new FlxSprite();
+		reflectionSprite.loadGraphic(titleDirectory + "Fellas/" + "Black Fade/Black Fade Features.png");
+		reflectionSprite.updateHitbox();
+		
+		add(reflectionSprite);	
+		add(mainFocus);
+		
+		
+		
+		
+		
 		var titleText = new FlxText(20, 0, 0, 'Rap-It-Up\nPrototype\n \n \n \n \nWork In Progress.');
 		titleText.setFormat("assets/fonts/vcr.ttf", 22, CENTER);
 		titleText.screenCenter(X);
