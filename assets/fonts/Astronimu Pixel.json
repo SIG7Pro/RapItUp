@@ -1,0 +1,40 @@
+{
+	"$baseURI": "https://yal.cc/r/20/pixelfont/",
+	"$version": "1.0",
+	"in-glyphs": [
+		"ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890:;,)({}/\\|<>'\"!@#$£%^&*[]-=+_ÑÇÁ~?¿¯ツ"
+	],
+	"glyph-color": "auto",
+	"in-kerning": [
+		""
+	],
+	"glyph-width": 8,
+	"glyph-height": 8,
+	"glyph-ofs-x": 0,
+	"glyph-ofs-y": 0,
+	"glyph-sep-x": 0,
+	"glyph-sep-y": 0,
+	"glyph-base-x": 0,
+	"glyph-baseline": 0,
+	"glyph-spacing": 1,
+	"font-is-mono": false,
+	"font-em-square": 1088,
+	"font-line-gap": 128,
+	"font-ascend": 768,
+	"font-descend": -256,
+	"font-px-size": 128,
+	"contour-type": "pixel",
+	"font-type": "ttf",
+	"font-name": "Astronimu Pixel",
+	"font-author": "ElastedAlory",
+	"font-copy": "(c) AARE",
+	"font-version": "Version 1.0",
+	"font-desc": "Astronima Engine's PIxel Font.",
+	"font-license": "Do as you please granted credit.",
+	"font-license-url": "",
+	"font-sample-text": "Hello!",
+	"font-preview-text": [
+		"ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890",
+		":;,)({}/\\|<>'\"!@#$£%^&*[]-=+_ÑÇÁ~?¿¯ツ"
+	]
+}
