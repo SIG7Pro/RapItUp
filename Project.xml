@@ -25,7 +25,7 @@
 
 	<source path="source"/>
 
-	<assets path="assets" exclude="assets/project-files"/>
+	<assets path="assets" exclude="project-files"/>
 
 	<haxelib name="flixel"/>
 	<haxelib name="flixel-addons"/>
@@ -37,6 +37,8 @@
 	<haxedef name="FLX_NO_DEBUG" unless="debug"/>
 	<!-- <haxedef name="NAPE_RELEASE_BUILD" unless="debug"/> -->
 
-	<icon path="assets/images/Placeholder/Icon.png"/>
+	<icon path="assets/images/Placeholder/Icon.png" size="706"/>
+	<language name="en-US" />
+
 
 </project>

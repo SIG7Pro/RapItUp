@@ -36,12 +36,10 @@ class PlayState extends FlxState {
 	
 	var curRanking:String = "N/A";
 	var canBeHit:Bool = false;
-	
-	var mightberemovedSomeday:Float = 1.0; // this is painful
 
 
 	override function create() {
-
+		trace(" I Can trace and do\na new line?");
 		var sprite = new FlxSprite();
 		sprite.makeGraphic(FlxG.width, FlxG.height, FlxColor.BROWN);
 		sprite.screenCenter();
@@ -112,6 +110,56 @@ class PlayState extends FlxState {
 		
 	}
 
+	public function keyCheck(data:Int)
+	{
+		if (FlxG.keys.anyPressed(mainKeys[data])) 
+		{
+			translineArrows.members[data+4].scale.set(0.95, 0.95);
+			
+			if (canBeHit = true) 
+			{
+			 scoreValue += 10;
+			 health += 2;
+			}
+			else
+			{
+			 scoreValue -= 10;
+			 health -= 2;
+			}
+				/*if (playingArrow.y = 50)
+				{
+					curRanking = "Sweet";
+					trace("Perfect!!");
+				}
+				else if (playingArrow.y > 50 && playingArrow.y < 80)
+				{
+					curRanking = "Good";
+					trace("Good!");
+				}
+				else if (playingArrow.y > 110 && playingArrow.y < 80)
+				{
+					curRanking = "Meh";
+					trace("Meh");
+				}
+				else if (playingArrow.y > 130 && playingArrow.y < 80)
+				{
+					curRanking = "Back";
+					trace("Bad");
+				}
+				else if (playingArrow.y > 140 && playingArrow.y < 80)
+				{
+					curRanking = "Wad";
+					trace("Wack...");
+				}*/	
+			
+		} 
+		else {
+			translineArrows.members[data+4].scale.set(1, 1);
+		
+		}
+		
+	}	
+
 	public function makeStrumline()
 	{
 		for (i in 0...2) 
@@ -135,7 +183,6 @@ class PlayState extends FlxState {
 					playingArrow = new FlxSprite(50 + (120 * j) + (FlxG.width / 1.875) * i, isUpscroll ? 50 + thingAmajig: FlxG.height - 150).makeGraphic(112, 112, 0xffc24b99);
 					playArrows.add(playingArrow);
 					FlxG.watch.add(playingArrow, "y"); // https://haxeflixel.com/documentation/debugger/
-					mightberemovedSomeday == playingArrow.y;
 					
 					/*
 					Things To Note (Upscroll)
@@ -164,56 +211,6 @@ class PlayState extends FlxState {
 					// Setting the last value to 0.5 makes it really fast! 1.4 is a moderate speed, 2.0 is pretty good.
 			}
 		}
-	}	
-	
-	public function keyCheck(data:Int)
-	{
-		if (FlxG.keys.anyPressed(mainKeys[data])) 
-		{
-			translineArrows.members[data+4].scale.set(0.95, 0.95);
-			
-			if (canBeHit = true) 
-			{
-			 scoreValue += 10;
-			 health += 0.2;
-			}
-			else
-			{
-			 scoreValue -= 10;
-			 health -= 0.2;
-			}
-				/*if (mightberemovedSomeday = 50)
-				{
-					curRanking = "Sweet";
-					trace("Perfect!!");
-				}
-				else if (mightberemovedSomeday > 50 && mightberemovedSomeday < 80)
-				{
-					curRanking = "Good";
-					trace("Good!");
-				}
-				else if (mightberemovedSomeday > 110 && mightberemovedSomeday < 80)
-				{
-					curRanking = "Meh";
-					trace("Meh");
-				}
-				else if (mightberemovedSomeday > 130 && mightberemovedSomeday < 80)
-				{
-					curRanking = "Back";
-					trace("Bad");
-				}
-				else if (mightberemovedSomeday > 140 && mightberemovedSomeday < 80)
-				{
-					curRanking = "Wad";
-					trace("Wack...");
-				}	*/
-			
-		} 
-		else {
-			translineArrows.members[data+4].scale.set(1, 1);
-		
-		}
-		
 	}			
 
 	override function update(elapsed:Float){
@@ -259,13 +256,13 @@ class PlayState extends FlxState {
 			keyCheck(i);
 		}
 
-	/*if (playingArrow.y > -62 && playingArrow.y < 162){
+	if (playingArrow.y > -62 && playingArrow.y < 162){
 		canBeHit = true;
 		
 		//
 
 
-		}*/
+		}
 	
 	}
 }

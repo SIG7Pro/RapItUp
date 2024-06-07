@@ -4,3 +4,5 @@ export/
 .DS_Store
 # This is a desktop entry file created by some Linux distros.
 .directory
+# Personal folder created to make going to exported builds easier.
+Shorcuts/
