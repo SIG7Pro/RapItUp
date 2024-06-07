@@ -50,8 +50,8 @@
 	<language name="en-US" />
 	
 		<!-- Extras / Defines -->
-		<define name="unsupported" if="bsd || neko || js || ios || android || html5 || flash || blackberry"/>
-		<log info="You are compiling for an untested OS/platform. Proceed with caution!" if="unsupported"/>
+		<define name="unsupported" if="bsd || neko || js || ios || android || html5 || flash || blackberry" unless="mac || linux || windows"/>
+		<log info="You are compiling for an untested OS/platform. Proceed with caution!" if="unsupported" />
 		
 		<define name="supported" unless="bsd || neko || js || ios || android || html5 || flash || blackberry"/>
 		<log info="Welcome!" if="supported"/>
