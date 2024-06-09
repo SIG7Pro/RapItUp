@@ -14,14 +14,14 @@
 	<!-- Compiler Conditionals -->
 
 	<section if="32bit">
-		<set name="BUILD_DIR" value="Export/debug/32bit" if="debug"/>
-		<set name="BUILD_DIR" value="Export/release/32bit" if="release"/>
-		<set name="BUILD_DIR" value="Export/final/32bit" if="final"/>
+		<set name="BUILD_DIR" value="export/debug/32bit" if="debug"/>
+		<set name="BUILD_DIR" value="export/release/32bit" if="release"/>
+		<set name="BUILD_DIR" value="export/final/32bit" if="final"/>
 	</section>
 	<section unless="32bit">
-		<set name="BUILD_DIR" value="Export/debug/64bit" if="debug"/>
-		<set name="BUILD_DIR" value="Export/release/64bit" if="release"/>
-		<set name="BUILD_DIR" value="Export/final/64bit" if="final"/>
+		<set name="BUILD_DIR" value="export/debug/64bit" if="debug"/>
+		<set name="BUILD_DIR" value="export/release/64bit" if="release"/>
+		<set name="BUILD_DIR" value="export/final/64bit" if="final"/>
 	</section>
 
 	<!--<source path="Source"/>
