@@ -24,9 +24,13 @@
 		<set name="BUILD_DIR" value="Export/final/64bit" if="final"/>
 	</section>
 
-	<source path="Source"/>
-
+	<!--<source path="Source"/>
 	<assets path="Assets" rename="assets"/>
+	 Incase the titles of the folders aren't uppercased. Testing.
+	 \
+	 They weren't uppercased for me. -->
+	<source path="source"/>
+	<assets path="assets"/>
 
 	<!-- Libraries -->
 	
@@ -39,7 +43,11 @@
 		<haxedef name="FLX_NO_KEYBOARD"/>
 	</section>
 	<haxedef name="FLX_NO_TOUCH" if="desktop"/>
-	<haxedef name="FLX_NO_DEBUG" unless="debug"/>
+	<haxedef name="FLX_NO_DEBUG" unless="debug"/>	
+
+	<define name="unsupported" if="bsd || neko || js || ios || android || html5 || flash || blackberry" unless="mac || linux || windows"/>
+	<define name="supported" unless="bsd || neko || js || ios || android || html5 || flash || blackberry"/>
+
 
 	<!-- Extras -->
 
@@ -50,4 +58,7 @@
 	<language name="en-US"/>
 
 	<haxeflag name="--macro" value="util.macro.Platform.checkForTested()"/>
+
+			<log info="You are compiling for an untested OS/platform. Proceed with caution!" if="unsupported" />
+		<log info="Welcome!" if="supported"/> <!-- "Welcome" - Proceeds to give 2903842039840398 code errors. -->
 </project>

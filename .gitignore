@@ -2,5 +2,8 @@
 .vscode/*
 # Usually contains build files, which aren't needed on the GitHub repo and also take up more than needed space when cloning or pushing commits to GitHub.
 export/*
+Export/*
 # Personal folder created to make going to exported builds easier.
-Shorcuts/*
+Shortcuts/*
+# 
+Documentation/*

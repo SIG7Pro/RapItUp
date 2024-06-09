@@ -37,10 +37,9 @@ class TitleState extends FlxState {
 		add(white);
 
 		var mainFocus = new FlxSprite(Paths.image('$TITLE_DIRECTORY/Fellas/Main'));
-		add(mainFocus);
-
 		var reflectionSprite = new FlxSprite(Paths.image('$TITLE_DIRECTORY/Fellas/Black Fade/Black Fade Features'));
 		add(reflectionSprite);
+		add(mainFocus);
 
 		var titleText = new FlxText('Rap-It-Up\nPrototype\n\n\n\n\nWork In Progress.');
 		titleText.setFormat(Paths.font('vcr.ttf'), 22, CENTER);
