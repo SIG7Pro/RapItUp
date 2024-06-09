@@ -1,78 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-<project xmlns="http://lime.software/project/1.0.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://lime.software/project/1.0.2 http://lime.software/xsd/project-1.0.2.xsd">
-
+<project>
+	
 	<!-- App Info -->
-	<app title="Rap-It-Up" file="RapItUp" main="Main" version="0.0.1" company="AARECo"/>
-	<app preloader="flixel.system.FlxPreloader"/>
 
-	<!-- <set name="SWF_VERSION" value="11.8"/> -->
-
+	<meta title="Rap-It-Up" package="com.AARECo.rapitup" version="0.0.1" company="AARECo"/>
+	<app main="Main" file="RapItUp" preloader="flixel.system.FlxPreloader"/>
+	
 	<window width="1280" height="720" background="#000000" hardware="true"/>
 	<window if="html5" resizable="false"/>
 	<window if="desktop" orientation="landscape"/>
 	<window if="mobile" orientation="landscape" fullscreen="true" width="0" height="0"/>
-	
+
 	<!-- Compiler Conditionals -->
 
 	<section if="32bit">
-		<set name="BUILD_DIR" value="export/debug/32bit" if="debug"/>
-		<set name="BUILD_DIR" value="export/release/32bit" if="release"/>
-		<set name="BUILD_DIR" value="export/final/32bit" if="final"/>
+		<set name="BUILD_DIR" value="Export/debug/32bit" if="debug"/>
+		<set name="BUILD_DIR" value="Export/release/32bit" if="release"/>
+		<set name="BUILD_DIR" value="Export/final/32bit" if="final"/>
 	</section>
 	<section unless="32bit">
-		<set name="BUILD_DIR" value="export/debug/64bit" if="debug"/>
-		<set name="BUILD_DIR" value="export/release/64bit" if="release"/>
-		<set name="BUILD_DIR" value="export/final/64bit" if="final"/>
+		<set name="BUILD_DIR" value="Export/debug/64bit" if="debug"/>
+		<set name="BUILD_DIR" value="Export/release/64bit" if="release"/>
+		<set name="BUILD_DIR" value="Export/final/64bit" if="final"/>
 	</section>
-	
-	<source path="source"/>
-	<assets path="assets" exclude="project-files"/>
-	
-	<!-- Libraries -->
-	<haxelib name="flixel"/>
-	<haxelib name="flixel-addons"/>
-	
-	<!-- Defining -->
-	
-	<haxedef name="FLX_NO_MOUSE" if="mobile" />
-	<haxedef name="FLX_NO_KEYBOARD" if="mobile" />
-	<haxedef name="FLX_NO_TOUCH" if="desktop" />
 
-	<haxedef name="FLX_NO_DEBUG" unless="debug"/>
-	<!-- <haxedef name="NAPE_RELEASE_BUILD" unless="debug"/> -->
+	<source path="Source"/>
+
+	<assets path="Assets" rename="assets"/>
+
+	<!-- Libraries -->
 	
+	<haxelib name="flixel"/>
+
+	<!-- Defining -->
+
+	<section if="mobile">
+		<haxedef name="FLX_NO_MOUSE"/>
+		<haxedef name="FLX_NO_KEYBOARD"/>
+	</section>
+	<haxedef name="FLX_NO_TOUCH" if="desktop"/>
+	<haxedef name="FLX_NO_DEBUG" unless="debug"/>
+
 	<!-- Extras -->
 
-	<icon path="assets/images/Placeholder/Icon.png" size="706" unless="windows || mac"/>
-	<icon path="assets/images/Icons/App/Metro.png" size="706" if="windows"/>
-	<icon path="assets/images/Icons/App/Silicon.png" size="706" if="mac"/>
-	<!-- If I could put conditionals for Windows 7/Vista exclusively, then I'd put the Aero icon there. -->
-	<language name="en-US" />
-	
-		<!-- Extras / Defines -->
-		<define name="unsupported" if="bsd || neko || js || ios || android || html5 || flash || blackberry" unless="mac || linux || windows"/>
-		<log info="You are compiling for an untested OS/platform. Proceed with caution!" if="unsupported" />
-		
-		<define name="supported" unless="bsd || neko || js || ios || android || html5 || flash || blackberry"/>
-		<log info="Welcome!" if="supported"/>
-		 
-		<log info="
-		
-__________                         .___  __   
-\______   \_____  ______           |   |/  |_ 
- |       _/\__  \ \____ \   ______ |   \   __\
- |    |   \ / __ \|  |_> > /_____/ |   ||  |  
- |____|_  /(____  /   __/          |___||__|  
-        \/      \/|__|                        
- ____ ___                                     
-|    |   \______                              
-|    |   /\____ \                             
-|    |  / |  |_> >                            
-|______/  |   __/                             
-          |__|                                " if="supported"/> <!-- https://www.patorjk.com/software/taag/#p=display&f=Graffiti&t=Rap-It%0AUp -->
-		
-                       
- 
+	<icon path="assets/images/Placeholder/Icon.png" unless="windows || mac"/>
+	<icon path="assets/images/Icons/App/Metro.png" if="windows"/>
+	<icon path="assets/images/Icons/App/Silicon.png" if="mac"/>
 
+	<language name="en-US"/>
 
+	<haxeflag name="--macro" value="util.macro.Platform.checkForTested()"/>
 </project>

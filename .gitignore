@@ -1,8 +1,6 @@
+# VS Code project files
+.vscode/*
 # Usually contains build files, which aren't needed on the GitHub repo and also take up more than needed space when cloning or pushing commits to GitHub.
-export/
-# This is a hidden file created by MacOS that saves custom properties of a folder, usually view options or file positions, or whatever other visual information. Mostly done automatically.
-.DS_Store
-# This is a desktop entry file created by some Linux distros.
-.directory
+export/*
 # Personal folder created to make going to exported builds easier.
-Shorcuts/
+Shorcuts/*
