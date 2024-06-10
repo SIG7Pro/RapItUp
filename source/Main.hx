@@ -15,10 +15,9 @@ class Main extends FlxGame {
 		#end
 
 		#if linux
-		flixel.FlxG.stage.window.setIcon(lime.graphics.Image.fromFile("${FlxG.stage.application.icon.get('path')}"));
-		trace("Title: " + FlxG.stage.application.meta.get('title') +
-		"\nVersion: " + FlxG.stage.application.meta.get('version') //+
-		//"\nIcon:" + FlxG.stage.application.icon.get('path')
+		flixel.FlxG.stage.window.setIcon(lime.graphics.Image.fromFile("assets/images/Icons/App/Aero"));
+		// Would it be worth it to make a thing that detects different operating system versions/variants and switch accordingly?
+		// Hmm...
 		);
 		#end
 

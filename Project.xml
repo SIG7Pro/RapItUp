@@ -51,9 +51,10 @@
 
 	<!-- Extras -->
 
-	<icon path="assets/images/Placeholder/Icon.png" unless="windows || mac"/>
+	<icon path="assets/images/Placeholder/Icon.png" unless="windows || mac || linux"/>
 	<icon path="assets/images/Icons/App/Metro.png" if="windows"/>
 	<icon path="assets/images/Icons/App/Silicon.png" if="mac"/>
+	<icon path="assets/images/Icons/App/Aero.png" if="linux"/>
 
 	<language name="en-US"/>
 
