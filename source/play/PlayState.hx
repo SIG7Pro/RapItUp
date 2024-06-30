@@ -216,8 +216,6 @@ class PlayState extends FlxState {
 
 	override function update(elapsed:Float){
 	
-	
-	   //trace("uy.");
 		if (FlxG.keys.anyPressed( [ESCAPE, BACKSPACE] ) )
 			{
 				FlxG.switchState(ui.menus.TitleState.new);
