@@ -3,6 +3,12 @@ Still in progress.
 
 Inspired by games like FNF, PTR, and DDR.
 
+Requires Haxe, HaxeFlixel, Lime, and OpenFL (HX). Lime and OFL should be installed when installing HaxeFlixel, so don't fret.
+When compiling, try doing either:
+lime test hl -debug
+or
+lime test (OS) (replace OS with ur operating system)
+
 ______________________
 
 Hotkeys:
@@ -12,11 +18,6 @@ I/R - Add HP + Score
 K/F - Remove HP + Score
 O/P - Head to (WIP) options.
 
-
 ______________________
-to all the vtuber company fellas or something
-
-you are 100% allowed to play the video game1!!!!! full perms are given!!!!!! jus make sure the game is visible and not anime tits!!!!!
-
-
-what vtubing companies exist? i need promos
+To every company that has VTuber stuff and has the player require permission from the developers and whatnot (apparently that exists), you have full perms.
+Make sure the game is at least seen 50% of the screen and not anime tits!
