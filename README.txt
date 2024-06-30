@@ -3,8 +3,17 @@ Still in progress.
 
 Inspired by games like FNF, PTR, and DDR.
 
+______________________
+
+Hotkeys:
+X - Spawn notes.
+Esc/Backsapce - Return
+I/R - Add HP + Score
+K/F - Remove HP + Score
+O/P - Head to (WIP) options.
 
 
+______________________
 to all the vtuber company fellas or something
 
 you are 100% allowed to play the video game1!!!!! full perms are given!!!!!! jus make sure the game is visible and not anime tits!!!!!

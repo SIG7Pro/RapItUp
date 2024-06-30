@@ -5,7 +5,7 @@ class Platform {
 	static final MSG_TESTED   = 'Welcome!';
 	
 	public static macro function checkForTested():Array<haxe.macro.Expr.Field> {
-		#if (bsd || neko || js || ios || android || html5 || blackberry)
+		#if (bsd || neko || js || ios || android || html5 || blackberry || mac) // Note to self: I accidentally wiped my PC a while back and can't run macOS, hence why its temporarily here.
 		haxe.macro.Compiler.define('untested');
 		Sys.println(MSG_UNTESTED);
 		#else

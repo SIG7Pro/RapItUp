@@ -26,7 +26,7 @@ class PlayState extends FlxState {
 
 	var hpBarOverlay:FlxSprite;
 
-	// lantern engine shiz (hi - ty dot cee ess) // no swearing this is a Christian minecraft server
+	// lantern engine shiz (hi - ty dot cee ess) // no swearing, this is a Christian minecraft server
 	var translineArrows:FlxTypedGroup<FlxSprite>;	
 	var mainKeys:Array<Array<FlxKey>> = [[A, LEFT], [S, DOWN], [W, UP], [D, RIGHT]];
 	var isUpscroll:Bool = true;
@@ -91,15 +91,11 @@ class PlayState extends FlxState {
 		scoreTxt.setFormat("assets/fonts/captura-now-regular.otf", 22, LEFT);
 		scoreTxt.x = 770;
 		scoreTxt.y = 656;
-		//scoreTxt.screenCenter(X);
 		// The actual overlay, fantastic.
 		hpBarOverlay = new FlxSprite("assets/images/UI/HPBarOverlay.png");
 		hpBarOverlay.x = 390;
 		hpBarOverlay.y = 617;
 		hpBarOverlay.updateHitbox();
-		/*add(hpBarOverlay);
-		add(healthBar);
-		add(scoreTxt);*/
 
 		for (infoOverlay in [scoreTxt, healthBar, hpBarOverlay]) 
 		add(infoOverlay);
@@ -161,7 +157,7 @@ class PlayState extends FlxState {
 					
 					// Tween based off of an older commit. Edited however.
 					// https://github.com/SIG7Pro/RapItUp/blob/92ec3a93dd1824bc61f780cb13d53162b1dd640b/source/PlayState.hx
-					FlxTween.tween(playingArrow, {y: isUpscroll ? 50 : FlxG.height - 150 }, scrollSpeed);
+					FlxTween.tween(playingArrow, {y: isUpscroll ? 50 - 150 : FlxG.height - 150 }, scrollSpeed);
 					// A value closer to zero speeds up the note, while a value farther from it decreases the speed.
 					// Setting the last value to 0.5 makes it really fast! 1.4 is a moderate speed, 2.0 is pretty good.
 			}
