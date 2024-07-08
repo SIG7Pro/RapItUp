@@ -44,6 +44,8 @@ class PlayState extends FlxState {
 
 	override function create() {
 
+		FlxG.stage.window.title = "Rap-It-Up: PlayState Title Test";
+
 		var sprite = new FlxSprite();
 		sprite.makeGraphic(FlxG.width, FlxG.height, FlxColor.BROWN);
 		sprite.screenCenter();
@@ -91,6 +93,7 @@ class PlayState extends FlxState {
 		scoreTxt.setFormat("assets/fonts/captura-now-regular.otf", 22, LEFT);
 		scoreTxt.x = 770;
 		scoreTxt.y = 656;
+		scoreTxt.setBorderStyle(OUTLINE, FlxColor.BLACK, 2);
 		// The actual overlay, fantastic.
 		hpBarOverlay = new FlxSprite("assets/images/UI/HPBarOverlay.png");
 		hpBarOverlay.x = 390;
@@ -219,11 +222,13 @@ class PlayState extends FlxState {
 		if (FlxG.keys.anyPressed( [ESCAPE, BACKSPACE] ) )
 			{
 				FlxG.switchState(ui.menus.TitleState.new);
+				FlxG.stage.window.title = "Rap-It-Up";
 				trace("Returning to Title.");
 			}
 		if (FlxG.keys.anyPressed( [O, P] ) )
 			{
 				FlxG.switchState(ui.menus.OptionsState.new);
+				//FlxG.stage.window.title = "Rap-It-Up: Options";
 				trace("Going to Options.");
 			}
 		//#if debug
