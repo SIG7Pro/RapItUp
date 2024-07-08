@@ -52,10 +52,9 @@ class OptionsState extends FlxState {
 		add(smallBlackRectangle);
 
 		var ThatOneAstrominuMenuConceptSquiggle = new FlxSprite(Paths.image('UI/Options Menu/AstronimuConceptSquiggle'));
-		ThatOneAstrominuMenuConceptSquiggle.screenCenter(X);
 		ThatOneAstrominuMenuConceptSquiggle.updateHitbox();
-		ThatOneAstrominuMenuConceptSquiggle.y = 34;
-		ThatOneAstrominuMenuConceptSquiggle.x = 0;
+		ThatOneAstrominuMenuConceptSquiggle.y = 85;
+		ThatOneAstrominuMenuConceptSquiggle.x = -14;
 		add(ThatOneAstrominuMenuConceptSquiggle);
 
 		var titleText = new FlxSprite(Paths.image('UI/Options Menu/Options Text'));	
