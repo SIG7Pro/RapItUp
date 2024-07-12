@@ -5,6 +5,9 @@ import flixel.text.FlxText;
 import flixel.FlxSprite;
 import flixel.FlxState;
 
+import lime.system.System;
+import sys.FileSystem;
+
 class TitleState extends FlxState {
 	static final TITLE_DIRECTORY = 'UI/Title Screen';
 	static final LINUX_PRETTY_NAME = 'cat /etc/*-release | grep "PRETTY_NAME" | sed ' + "'" + 's/PRETTY_NAME=//g' + "'" + " | sed 's/" + '"//g' + "'";
@@ -12,10 +15,13 @@ class TitleState extends FlxState {
 	override function create() {
 		#if linux
 		trace('You are running');
-		Sys.command(LINUX_PRETTY_NAME);
-		trace('(${Sys.systemName})');
-		#else
-		trace(Sys.systemName);
+
+		if ( FileSystem.exists('/usr/share/bodhi/quickstart/images/cc.png') ){
+			trace("Bodhi Linux");	
+		}else{
+			trace(lime.system.System.platformName);
+			trace(lime.system.System.platformVersion);
+		}
 		#end
 
 		var purple = new FlxSprite(Paths.image('$TITLE_DIRECTORY/Purple'));
