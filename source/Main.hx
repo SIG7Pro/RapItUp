@@ -6,6 +6,9 @@ import openfl.Lib;
 import flixel.FlxGame;
 import flixel.FlxG;
 
+import lime.system.System;
+import sys.FileSystem;
+
 class Main extends FlxGame {
 	public static var performance:Performance;
 
@@ -16,8 +19,17 @@ class Main extends FlxGame {
 
 		#if linux
 		flixel.FlxG.stage.window.setIcon(lime.graphics.Image.fromFile("assets/images/Icons/App/Aero.png"));
-		// Would it be worth it to make a thing that detects different operating system versions/variants and switch accordingly?
-		// Hmm...
+		#end
+
+		#if linux
+		trace('You are running');
+
+		if ( FileSystem.exists('/usr/share/bodhi/quickstart/images/cc.png') ){
+			trace("Bodhi Linux");	
+		}else{
+			trace(lime.system.System.platformName);
+			trace(lime.system.System.platformVersion);
+		}
 		#end
 
 		Lib.current.loaderInfo.uncaughtErrorEvents.addEventListener(UncaughtErrorEvent.UNCAUGHT_ERROR, onUncaughtError);
