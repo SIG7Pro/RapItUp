@@ -11,7 +11,12 @@ class Platform {
 		#else
 		haxe.macro.Compiler.define('tested');
 		Sys.println(MSG_TESTED);
-		Sys.println(sys.io.File.getContent('RAPITUP.txt'));
+			#if NO_COMPILE_WATERMARK
+				Sys.println("Compile watermark disabled.");
+			#else
+				Sys.println(sys.io.File.getContent('RAPITUP.txt'));
+			#end
+
 		#end
 
 		return haxe.macro.Context.getBuildFields();

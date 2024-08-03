@@ -4,6 +4,7 @@ import flixel.ui.FlxButton;
 import flixel.text.FlxText;
 import flixel.FlxSprite;
 import flixel.FlxState;
+import flixel.FlxSubState;
 
 class TitleState extends FlxState {
 	static final TITLE_DIRECTORY = 'UI/Title Screen';
@@ -38,13 +39,9 @@ class TitleState extends FlxState {
 		titleText.screenCenter(X);
 		add(titleText);
 
-		var playButton = new FlxButton('Play', click.bind('play'));
+		var playButton = new FlxButton('Start', click.bind('prestar'));
 		playButton.setPosition(FlxG.width / 2 - 10 - playButton.width, FlxG.height - playButton.height - 70);
 		add(playButton);
-
-		var optButton = new FlxButton('Options', click.bind('options'));
-		optButton.setPosition(FlxG.width / 2 - 10 - playButton.width, FlxG.height - playButton.height - 40);
-		add(optButton);
 
 		#if sys
 		var exitButton = new FlxButton('X', click.bind('exit'));
@@ -59,8 +56,7 @@ class TitleState extends FlxState {
 
 	function click(label:String) {
 		switch(label.toLowerCase()) {
-			case 'play': FlxG.camera.fade(1 / 3, FlxG.switchState.bind(play.PlayState.new));
-			case 'options': FlxG.camera.fade(1 / 3, FlxG.switchState.bind(OptionsState.new));
+			case 'prestar': FlxG.camera.fade(1 / 3); openSubState(new MainMenuState());
 			#if sys
 			case 'exit': Sys.exit(0);
 			#end

@@ -3,13 +3,15 @@
 	
 	<!-- App Info -->
 
-	<meta title="Rap-It-Up" package="com.AARECo.rapitup" version="0.0.1" company="AARECo"/>
+	<meta title="Rap-It-Up (Development Build)" package="com.AARECo.rapitup" version="0.0.1a" company="AARECo"/>
 	<app main="Main" file="RapItUp" preloader="flixel.system.FlxPreloader"/>
 	
 	<window width="1280" height="720" background="#000000" hardware="true"/>
 	<window if="html5" resizable="false"/>
 	<window if="desktop" orientation="landscape"/>
 	<window if="mobile" orientation="landscape" fullscreen="true" width="0" height="0"/>
+
+	<meta title="Rap-It-Up (Development Build)" package="com.AARECo.rapitup" version="0.0.1a" company="AARECo" />
 
 	<!-- Compiler Conditionals -->
 
@@ -44,6 +46,8 @@
 	</section>
 	<haxedef name="FLX_NO_TOUCH" if="desktop"/>
 	<haxedef name="FLX_NO_DEBUG" unless="debug"/>	
+
+	<haxedef name="NO_COMPILE_WATERMARK" if="ncw"/>
 
 	<!-- Extras -->
 
