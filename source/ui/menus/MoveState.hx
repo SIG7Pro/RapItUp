@@ -15,7 +15,7 @@ class MoveState extends FlxState {
 		FlxG.stage.window.title = "Background Testing";
 
 		baseBG = new FlxSprite();
-		baseBG.makeGraphic(1280, 720, 0xFF65e8ff);
+		baseBG.makeGraphic(1280, 720, 0xff7ec2ce);
 		baseBG.screenCenter();
 		add(baseBG);
 
