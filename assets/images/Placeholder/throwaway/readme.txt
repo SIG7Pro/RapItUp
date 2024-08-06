@@ -1,0 +1,2 @@
+This is a folder for files that don't need to be added to GitHub. Hence the folder being called throwaway. Should not be included in release builds.
+In a nutshell, random testing files saved locally to the users computer. Mainly test graphics.

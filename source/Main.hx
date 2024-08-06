@@ -11,6 +11,7 @@ import sys.FileSystem;
 
 class Main extends FlxGame {
 	public static var performance:Performance;
+	public static var OSVers:String = ("Unknown");
 
 	public function new() {
 		#if (hl && !debug)
@@ -25,10 +26,12 @@ class Main extends FlxGame {
 		trace('You are running');
 
 		if ( FileSystem.exists('/usr/share/bodhi/quickstart/images/cc.png') ){
-			trace("Bodhi Linux");	
+			trace("Bodhi Linux");
+			OSVers == "Bodhi Linux";
 		}else{
 			trace(lime.system.System.platformName);
 			trace(lime.system.System.platformVersion);
+			OSVers == lime.system.System.platformName + " " + lime.system.System.platformVersion;
 		}
 		#end
 

@@ -12,6 +12,7 @@ import openfl.display.Shape;
 import openfl.display.Bitmap;
 import openfl.text.TextField;
 import openfl.display.Sprite;
+//import lime.system.System;
 
 class Performance extends Sprite {
 	var performanceText:TextField;
@@ -80,7 +81,8 @@ class Performance extends Sprite {
 			appText.width = 500;
 			appText.selectable = true;
 			appText.defaultTextFormat = performanceText.defaultTextFormat;
-			appText.text = 'Title: ${FlxG.stage.application.meta.get('title')}\nVersion: ${FlxG.stage.application.meta.get('version')}';
+			//appText.text = 'Title: ${FlxG.stage.application.meta.get('title')}\nVersion: ${FlxG.stage.application.meta.get('version')}';
+			appText.text = 'Operating System: ' + Main.OSVers + '\nVersion: ${FlxG.stage.application.meta.get('version')}';
 			appText.embedFonts = true;
 			nextX = appText.x + appText.textWidth + paddingX;
 		}
@@ -152,5 +154,6 @@ class Performance extends Sprite {
 		boundData = new BitmapData(FlxG.stage.stageWidth, fullHeight);
 		boundData.fillRect(new Rectangle(0, 0, FlxG.stage.stageWidth, fullHeight), 0x00000000);
 		bound.bitmapData = boundData;
+		appText.text = 'Operating System: ' + Main.OSVers + '\nVersion: ${FlxG.stage.application.meta.get('version')}';
 	}
 }
