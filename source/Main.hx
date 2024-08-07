@@ -26,13 +26,15 @@ class Main extends FlxGame {
 		trace('You are running');
 
 		if ( FileSystem.exists('/usr/share/bodhi/quickstart/images/cc.png') ){
-			trace("Bodhi Linux");
+			trace("Bodhi Linux ("+ lime.system.System.platformName + " " + lime.system.System.platformVersion + ")");
 			OSVers == "Bodhi Linux";
 		}else{
 			trace(lime.system.System.platformName);
 			trace(lime.system.System.platformVersion);
 			OSVers == lime.system.System.platformName + " " + lime.system.System.platformVersion;
 		}
+		#else
+		OSVers == lime.system.System.platformName + " " + lime.system.System.platformVersion;
 		#end
 
 		Lib.current.loaderInfo.uncaughtErrorEvents.addEventListener(UncaughtErrorEvent.UNCAUGHT_ERROR, onUncaughtError);

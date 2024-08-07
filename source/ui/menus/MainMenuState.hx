@@ -57,7 +57,7 @@ class MainMenuState extends FlxState {
 	override function create() {
 
 		var baseBG = new FlxSprite();
-		baseBG.makeGraphic(128, 64, 0x65e8ff);
+		baseBG.makeGraphic(FlxG.width, FlxG.height, 0xff249fb4);
 		baseBG.screenCenter();
 		add(baseBG);
 
@@ -78,7 +78,7 @@ class MainMenuState extends FlxState {
 
 		*/
 
-		var playButton = new FlxButton(blankLabel, click.bind(blankLabel));
+		var playButton = new FlxButton(blankLabel, click.bind('play'));
 		playButton.setPosition(0, 216);
 		playButton.loadGraphic('$MENU_DIRECTORY/buttonPlay.png', true, 534, 228);
 		playButton.scale.set(0.5, 0.5); 
