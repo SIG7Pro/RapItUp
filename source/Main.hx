@@ -14,27 +14,28 @@ class Main extends FlxGame {
 	public static var OSVers:String = ("Unknown");
 
 	public function new() {
-		#if (hl && !debug)
-		hl.UI.closeConsole();
-		#end
-
 		#if linux
 		flixel.FlxG.stage.window.setIcon(lime.graphics.Image.fromFile("assets/images/Icons/App/Aero.png"));
 		#end
 
-		#if linux
+		#if (hl && !debug)
+		hl.UI.closeConsole();
+		#end
+
+		// OS Detection. Serves no ingame puropse yet.
 		trace('You are running');
 
+		#if linux
 		if ( FileSystem.exists('/usr/share/bodhi/quickstart/images/cc.png') ){
 			trace("Bodhi Linux ("+ lime.system.System.platformName + " " + lime.system.System.platformVersion + ")");
 			OSVers == "Bodhi Linux";
-		}else{
-			trace(lime.system.System.platformName);
-			trace(lime.system.System.platformVersion);
+		}else
+		{
+			trace(lime.system.System.platformName + " " + lime.system.System.platformVersion);
 			OSVers == lime.system.System.platformName + " " + lime.system.System.platformVersion;
 		}
 		#else
-		OSVers == lime.system.System.platformName + " " + lime.system.System.platformVersion;
+			OSVers == lime.system.System.platformName + " " + lime.system.System.platformVersion;
 		#end
 
 		Lib.current.loaderInfo.uncaughtErrorEvents.addEventListener(UncaughtErrorEvent.UNCAUGHT_ERROR, onUncaughtError);

@@ -92,7 +92,7 @@ class PlayState extends FlxState {
 		scoreTxt = new FlxText(27.08, FlxG.height - 40, 0, 'Wahoo.');
 		scoreTxt.setFormat("assets/fonts/captura-now-regular.otf", 22, LEFT);
 		scoreTxt.x = 770;
-		scoreTxt.y = 656;
+		scoreTxt.y = 656 - 10;
 		scoreTxt.setBorderStyle(OUTLINE, FlxColor.BLACK, 2);
 		// The actual overlay, fantastic.
 		hpBarOverlay = new FlxSprite("assets/images/UI/HPBarOverlay.png");
@@ -253,7 +253,7 @@ class PlayState extends FlxState {
 			}
 			
 	healthBar.value = health;
-	scoreTxt.text = "Score:" + scoreValue + "\n" + curRanking;
+	scoreTxt.text = "Score:  " + scoreValue/* + "\n" + curRanking*/;
 
 
 		for (i in 0...mainKeys.length) {
