@@ -11,6 +11,8 @@ class TitleState extends FlxState {
 
 	override function create() {
 
+		trace(FlxG.random.bool(95));
+
 		var purple = new FlxSprite(Paths.image('$TITLE_DIRECTORY/Purple'));
 		purple.scale.y = MathUtil.percent(61.33);
 		purple.updateHitbox();

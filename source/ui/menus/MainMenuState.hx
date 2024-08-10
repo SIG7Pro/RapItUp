@@ -130,8 +130,8 @@ class MainMenuState extends FlxState {
 	function click(label:String) {
 		switch(label.toLowerCase()) {
 			case 'play': FlxG.camera.fade(1 / 3, FlxG.switchState.bind(play.PlayState.new));
-			case 'options': FlxG.camera.fade(1 / 3, FlxG.switchState.bind(OptionsState.new));
-			//case 'mooste': FlxG.camera.fade(1 / 3, FlxG.switchState.bind(MoveState.new));
+			//case 'options': FlxG.camera.fade(1 / 3, FlxG.switchState.bind(OptionsState.new));
+			case 'mooste': FlxG.camera.fade(1 / 3, FlxG.switchState.bind(MoveState.new));
 			#if sys
 			case 'exit': FlxG.camera.fade(1 / 3, FlxG.switchState.bind(TitleState.new));
 			#end

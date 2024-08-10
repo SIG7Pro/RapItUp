@@ -5,31 +5,28 @@ import flixel.text.FlxText;
 import flixel.FlxState;
 import flixel.util.FlxColor;
 
-import flixel.math.FlxRandom;
-import flixel.FlxG.random;
-import StdTypes.Float;
+//import flixel.math.FlxRandom;
+//import flixel.FlxG.random;
+//import StdTypes.Float;
+
+import flixel.util.FlxTimer;
 
 class MoveState extends FlxState {
 	public var firstImage:FlxSprite;
 	public var secondBacker:FlxSprite;
 	public var thirdSlot:FlxSprite;
-	// The sprites that are set to move.
-	public var dirX:Float = Math.random();
-	public var direY:Float;
-	//funny
+	public var fourthButFirst:FlxSprite;
+	// The sprites that are set to change.
 
 	var baseBG:FlxSprite;
-	public var titleText:FlxText;
+
+	var timerA:FlxTimer;
+	var timerB:FlxTimer;
+	var timerC:FlxTimer;
+	var timerD:FlxTimer;
+
 
 	override function create() {
-
-		// Notes to self:
-		// FlxVelocity.fromAngle
-		// https://  channels/162395145352904705/165234904815239168/1270174962849939498 haxe server
-		// https://api.haxeflixel.com/flixel/math/FlxVelocity.html
-
-		//dirX == flixel.FlxG.random(0, 90);
-		//direY == 90 - dirX;
 
 		FlxG.stage.window.title = "Background Testing";
 
@@ -57,50 +54,70 @@ class MoveState extends FlxState {
 
 		firstImage = new FlxSprite(Paths.image('Placeholder/MainMenu/bg/explison'));
 		firstImage.screenCenter();
-		firstImage.alpha = 0.001;
+		firstImage.alpha = 0.01;
 		add(firstImage);
 
 		secondBacker = new FlxSprite(Paths.image('Placeholder/MainMenu/bg/semy'));
 		secondBacker.screenCenter();
-		secondBacker.alpha = 0.001;
+		secondBacker.alpha = 0.01;
 		add(secondBacker);
 
 		thirdSlot = new FlxSprite(Paths.image('Placeholder/MainMenu/bg/crudecad'));
 		thirdSlot.screenCenter();
-		thirdSlot.alpha = 0.001;
+		thirdSlot.alpha = 0.01;
 		add(thirdSlot);
 
-		titleText = new FlxText('Testing Vairbales');
-		titleText.setFormat(Paths.font('vcr.ttf'), 22, CENTER);
-		titleText.screenCenter(X);
-		titleText.color = 0xffda3c5e;
-		add(titleText);
+		fourthButFirst = new FlxSprite(firstImage.graphic);
+		fourthButFirst.screenCenter();
+		fourthButFirst.alpha = 0.01;
+		add(fourthButFirst);
+
+		timerA = new FlxTimer();
+		//timerB = new FlxTimer();
+		timerB = new FlxTimer().start(3.0, num3fadein);
+		timerC = new FlxTimer();
+		timerD = new FlxTimer();
 
 		super.create();
-
-		
-		moveNum1();
+		FlxG.log.add("The FlxTimer has exist");
+		moveNum1first();
 	}
 
-	function moveNum1(){
-		// best haxe code https://discord.com/channels/162395145352904705/165234904815239168/1270782099502403656
+	function moveNum1first(){
 		firstImage.alpha = 1;
-		titleText.text == "Variables\ndirX =" + dirX;
 		firstImage.velocity.x = 5;
-
-		for (i in 0...10) {
-			//code here
+		timerA.start(1, num2fadein, 99);
+		//for (i in 0...10) {
+			//timer.start(1, noEvent, 10);
 			
-			//firstImage.velocity.y = direY;
 
-		 }
+		 //}
+		 
+		 
+		// timerB.wait(4);
+		 //timerB.start(1, num3fadein, 99);
+		 //trace("Image 3 Faded In");
+		 //timerC.start(8, num4fadein, 99);
+		 //trace("Image 4 Faded In");
+	}
 
+	function num2fadein(_):Void{
+		secondBacker.alpha += 0.01;
+	}
+	function num3fadein(_):Void{
+		thirdSlot.alpha += 0.01;
+	}
+	function num4fadein(_):Void{
+		fourthButFirst.alpha += 0.01;
+	}
+
+
+	function noEvent(_):Void{
 
 	}
 
 	override function update(elapsed:Float){
-	titleText.text == "Variables\ndirX =" + dirX;
-	firstImage.velocity.x = dirX;
+
 		if (FlxG.keys.anyPressed( [ESCAPE, BACKSPACE] ) )
 			{
 				FlxG.switchState(ui.menus.TitleState.new);
