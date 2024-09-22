@@ -8,3 +8,5 @@ Export/*
 .directory
 desktop.ini
 .directory
+# Placeholder/secret files.
+assets/throwaway/*
