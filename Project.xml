@@ -31,6 +31,7 @@
 	 They weren't uppercased for me. -->
 	<source path="source"/>
 	<assets path="assets"/>
+	<assets path="assets/throwaway" rename="assets" unless="release"/>
 
 	<!-- Libraries -->
 	

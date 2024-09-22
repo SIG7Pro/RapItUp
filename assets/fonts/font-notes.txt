@@ -1,0 +1,39 @@
+Font Notes
+Notes about fonts that would otherwise make the 'readme.txt' file too long.
+
+Its best you read that first before coming here, as many things here relate to things in there.
+Things may be sorted by [#] for differing things.
+Text may also be taken from an early version of the readme file and moved here to keep things short.
+
+
+
+____________________________________________________
+
+
+[1] VCR OSD Mono - Mostly unchanged.
+- 1001 Free Fonts also has it [VCR OSD Mono] listed with the same data (https://www.1001freefonts.com/vcr-osd-mono.font)
+- What baffles me is that sites like FONTS4FREE, Fonts Max, FontSwan, and ResourceBoy list it under Riciery, yet sites like FontRiver list it under mrmanet.
+
+[2] Ubuntu - Entirely moved.
+Under the Ubuntu (brand) website, it lists the font as being under an open liscence.\
+    - Reading the font's LISCENCE.txt file gives a custom "Ubuntu Font Liscence," reading further, this seems to be loosely based off of the SIL in some ways or another.
+    - However, this seems to be for the time being. (LICENCE-FAQ.txt)
+
+[3] Pixel Arial - Entirely moved.
+ - Also according to the readme, it says: "This font uses the same rules that Miniml.com fonts use or any other Flash specific fonts that are made."
+    - Miniml.com has been replaced with a clothing shop, going to how it was on 2005 (since it was first seen on DaFont on June 10th, 2005, the only one with a date, https://web.archive.org/web/20050615234245/http://www.miniml.com/), the liscences are quite odd.
+    - The old Miniml website was owned by a guy named Craig Kroeger, who has his own site (https://www.craigkroeger.com/fonts/fonts-license), however the fonts section remains unchanged. 
+      - Some of the things say that miniml fonts are for personal use and for trademark by Craig, however, the font was assembled by someone named Max, so we can't be too sure. 
+
+
+    
+____________________________________________________
+
+
+abcdefghijklmnopqrstuvwxyz
+ABCDEFGHIJKLMNOPQRSTUVWXYZ
+1234567890
+!@#$%^&*()
+-= _+
+`~
+,. <> ;' :' [] {} \| /? 
