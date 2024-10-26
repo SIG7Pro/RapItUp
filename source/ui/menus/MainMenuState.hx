@@ -7,6 +7,9 @@ ITS STILL IN PROGRESS
 ALTHOUGHT IT LOOKS A LOT BETTER
 PROCEED WITH CAUTION
 
+Last modified 9/21/24 at 9:32:33 PM. 8.0 KiB (8,196)
+Last accessed 9/24/24 at 10:01:56 PM.
+
 */
 import flixel.text.FlxText;
 import flixel.FlxSprite;
@@ -153,6 +156,11 @@ class MainMenuState extends FlxState {
 		selectionBanner.x = 732;
 		selectionBanner.y = 203;
 		add(selectionBanner);
+
+	// Menu Selections
+		trace("Substate MenuItem.hx intiated!");
+		openSubState(new MenuItem());
+	//
 
 		// Front Items
 

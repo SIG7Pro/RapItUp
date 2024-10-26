@@ -11,10 +11,15 @@ class Platform {
 		#else
 		haxe.macro.Compiler.define('tested');
 		Sys.println(MSG_TESTED);
+		// Watermark Displaying
 			#if NO_COMPILE_WATERMARK
 				Sys.println("Compile watermark disabled.");
 			#else
 				Sys.println(sys.io.File.getContent('RAPITUP.txt'));
+			#end
+		// Notice about debug text. Doesn't apply to the FPS counter.
+			#if DEBUG_TEXT
+				Sys.println("Debug text may be shown on some states, please take note of that.");
 			#end
 
 		#end

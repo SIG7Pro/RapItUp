@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Created with Funkin Packer v0.1.3 https://neeeoo.github.io/funkin-packer/
+-->
+<TextureAtlas imagePath="menuExtras.png" width="503" height="88">
+	<SubTexture name="extrasSelected" x="1" y="1" width="249" height="86" frameX="-0" frameY="-0" frameWidth="249" frameHeight="86"/>
+	<SubTexture name="extrasUnselected" x="253" y="1" width="249" height="86" frameX="-0" frameY="-0" frameWidth="249" frameHeight="86"/>
+</TextureAtlas>
