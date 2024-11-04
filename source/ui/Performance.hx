@@ -12,8 +12,6 @@ import openfl.display.Shape;
 import openfl.display.Bitmap;
 import openfl.text.TextField;
 import openfl.display.Sprite;
-//import lime.system.System;
-import util.GameOSCheck;
 
 import util.LimeSys;
 import sys.FileSystem;
@@ -73,10 +71,6 @@ class Performance extends Sprite {
 
 		var nextX = paddingX;
 
-		if (osInfoFromMain = true){
-		osInfoRetriever = util.GameOSCheck.OSVers;
-		}else{
-		osInfoRetriever = Main.OSVers;
 		}
 
 		var logoSize = 50;
