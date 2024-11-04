@@ -13,6 +13,10 @@ import openfl.display.Bitmap;
 import openfl.text.TextField;
 import openfl.display.Sprite;
 //import lime.system.System;
+import util.GameOSCheck;
+
+import util.LimeSys;
+import sys.FileSystem;
 
 class Performance extends Sprite {
 	var performanceText:TextField;
@@ -47,6 +51,10 @@ class Performance extends Sprite {
 
 	var showGraph:Bool;
 
+	var osInfoFromMain:Bool = true;
+	var osInfoRetriever:String;
+	var OSVers:String = (LimeSys.platformName + " " + LimeSys.platformVersion); // Might break for Bodhi users but it doesn't really matter for now.
+
 	public function new(font:Font, ?logoData:BitmapData, showAppText = false, showGraph = false) {
 		super();
 
@@ -65,6 +73,12 @@ class Performance extends Sprite {
 
 		var nextX = paddingX;
 
+		if (osInfoFromMain = true){
+		osInfoRetriever = util.GameOSCheck.OSVers;
+		}else{
+		osInfoRetriever = Main.OSVers;
+		}
+
 		var logoSize = 50;
 		if (logoData != null) {
 			logo = new Bitmap(logoData);
@@ -82,7 +96,7 @@ class Performance extends Sprite {
 			appText.selectable = true;
 			appText.defaultTextFormat = performanceText.defaultTextFormat;
 			//appText.text = 'Title: ${FlxG.stage.application.meta.get('title')}\nVersion: ${FlxG.stage.application.meta.get('version')}';
-			appText.text = 'Operating System: ' + Main.OSVers + '\nVersion: ${FlxG.stage.application.meta.get('version')}';
+			appText.text = 'Operating System: ' + OSVers + '\nVersion: ${FlxG.stage.application.meta.get('version')}';
 			appText.embedFonts = true;
 			nextX = appText.x + appText.textWidth + paddingX;
 		}
@@ -107,6 +121,19 @@ class Performance extends Sprite {
 		FlxG.stage.addEventListener(Event.RESIZE, onResize);
 	}
 
+	function osChecker(){
+	// Taken from Main.hx.
+	OSVers == LimeSys.platformName + " " + LimeSys.platformVersion;
+		#if linux
+		if ( FileSystem.exists('/usr/share/bodhi/quickstart/images/cc.png') ){
+		//Checks for Bodhi Linux. Might get other versions for other Linux Distros *if needed*. If the System name and version say something different than the OS name itself (how Bodhi says Ubuntu since its a deriative but they forgot to update it) then it can go here.
+			OSVers == "Bodhi Linux on "+ LimeSys.platformName + " " + LimeSys.platformVersion + ".";
+			// Reason this is here instead of the old if/elses is since it'd just overwrite if on Bodhi and do nothing if otherwise. Much better. {Writing this on KDE Neon right now since I bricked my Bodhi install.}
+		}
+		#end
+
+	}
+
 	override function __enterFrame(deltaTime:Float) {
 		var now = Timer.stamp();
 		times.push(now);
@@ -127,6 +154,7 @@ class Performance extends Sprite {
 				var fps = times.length;
 				if (showGraph) drawGraph(fps);
 				performanceText.text = 'FPS: $fps\nRAM: $formattedRam\nVRAM: $formattedVram';
+				appText.text = 'Operating System: ' + OSVers + '\nVersion: ${FlxG.stage.application.meta.get('version')}';
 			}
 		}
 		skipped++;
@@ -154,6 +182,8 @@ class Performance extends Sprite {
 		boundData = new BitmapData(FlxG.stage.stageWidth, fullHeight);
 		boundData.fillRect(new Rectangle(0, 0, FlxG.stage.stageWidth, fullHeight), 0x00000000);
 		bound.bitmapData = boundData;
-		appText.text = 'Operating System: ' + Main.OSVers + '\nVersion: ${FlxG.stage.application.meta.get('version')}';
+		appText.text = 'Operating System: ' + OSVers + '\nVersion: ${FlxG.stage.application.meta.get('version')}';
 	}
+
+
 }

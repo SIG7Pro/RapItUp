@@ -22,21 +22,17 @@ class Main extends FlxGame {
 		hl.UI.closeConsole();
 		#end
 
-		// OS Detection. Serves no ingame puropse yet.
-		trace('You are running');
-
+		/*// OS Detection. Serves no ingame puropse yet. Minor adjustments made..
+		// Todo: Get this to show up ingame.
+		OSVers == lime.system.System.platformName + " " + lime.system.System.platformVersion;
 		#if linux
-		if ( FileSystem.exists('/usr/share/bodhi/quickstart/images/cc.png') ){
-			trace("Bodhi Linux ("+ lime.system.System.platformName + " " + lime.system.System.platformVersion + ")");
-			OSVers == "Bodhi Linux";
-		}else
-		{
-			trace(lime.system.System.platformName + " " + lime.system.System.platformVersion);
-			OSVers == lime.system.System.platformName + " " + lime.system.System.platformVersion;
+		if ( FileSystem.exists('/usr/share/bodhi/quickstart/images/cc.png') ){ //Checks for Bodhi Linux. Might get other versions for other Linux Distros *if needed*. If the System name and version say something different than the OS name itself (how Bodhi says Ubuntu since its a deriative but they forgot to update it) then it can go here.
+			OSVers == "Bodhi Linux on"+ lime.system.System.platformName + " " + lime.system.System.platformVersion + "."; // Reason this is here instead of the old if/elses is since it'd just overwrite if on Bodhi and do nothing if otherwise. Much better. {Writing this on KDE Neon right now since I bricked my Bodhi install.}
 		}
-		#else
-			OSVers == lime.system.System.platformName + " " + lime.system.System.platformVersion;
 		#end
+
+		trace('You are running: ' + OSVers);*/
+
 
 		Lib.current.loaderInfo.uncaughtErrorEvents.addEventListener(UncaughtErrorEvent.UNCAUGHT_ERROR, onUncaughtError);
 	

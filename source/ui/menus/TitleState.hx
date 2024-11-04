@@ -65,7 +65,10 @@ class TitleState extends FlxState {
 			case 'prestar': FlxG.camera.fade(1 / 3, FlxG.switchState.bind(MainMenuState.new));
 			#if sys
 			//case 'moote' : FlxG.switchState.bind(MoveState.new);
-			case 'exit': Sys.exit(0);
+			case 'exit':{
+			trace("Bye bye!");
+			lime.system.System.exit(0);
+			}
 			#end
 		}
 	}

@@ -20,6 +20,7 @@ import flixel.tweens.FlxTween;
 
 import Math;
 
+// Note: Menu actions are triggered on function Click
 
 class MenuItem extends FlxSubState {
 
@@ -190,7 +191,7 @@ class MenuItem extends FlxSubState {
 		{
 				travelTo(); // Triggers a function which sees either if UP/W or DOWN/S has been pressed and works accordingly.
 		}
-		if (FlxG.keys.anyPressed([T, U]))
+		if (FlxG.keys.anyPressed([ENTER, SPACE]))
 		{
 				click(currentlySelected + "");
 				trace(currentlySelected + "");
@@ -202,7 +203,7 @@ class MenuItem extends FlxSubState {
 			// https://midpointfinder.com/
 				if (currentlySelected == 5) {
 					// Info
-				if (FlxG.keys.anyPressed([T, U])){
+				if (FlxG.keys.anyPressed([ENTER, SPACE])){
 								click('5');
 					}
 
@@ -221,7 +222,7 @@ class MenuItem extends FlxSubState {
 					}
 				if (currentlySelected == 4) {
 					// Exit
-					if (FlxG.keys.anyPressed([T, U]))
+					if (FlxG.keys.anyPressed([ENTER, SPACE]))
 						{
 								click('4');
 						}
@@ -242,7 +243,7 @@ class MenuItem extends FlxSubState {
 				if (currentlySelected == 3) {
 					//Play // Default
 
-					if (FlxG.keys.anyPressed([T, U]))
+					if (FlxG.keys.anyPressed([ENTER, SPACE]))
 						{
 								click('3');
 						}
@@ -264,7 +265,7 @@ class MenuItem extends FlxSubState {
 				if (currentlySelected == 2) {
 					// Options
 
-					if (FlxG.keys.anyPressed([T, U]))
+					if (FlxG.keys.anyPressed([ENTER, SPACE]))
 						{
 								click('2');
 						}
@@ -285,7 +286,7 @@ class MenuItem extends FlxSubState {
 				if (currentlySelected == 1) {
 					// Extras
 
-					if (FlxG.keys.anyPressed([T, U]))
+					if (FlxG.keys.anyPressed([ENTER, SPACE]))
 						{
 								click('1');
 						}
@@ -338,24 +339,21 @@ class MenuItem extends FlxSubState {
 			*/
 			// You may wonder why it's like this, well, it's the fact that this menu isn't made well and is my first "functional" menu. Haxe is hard, man. The API makes it 25% easier though, however I wish there was more examples.
 
-			case '3':{
-					FlxTween.tween(menuPlay, {x: 0, y: 0, angle: 150}, 3, {type: FlxTweenType.PINGPONG, ease: FlxEase.circInOut});
-					// Tween: Tween
-					// Ease: circ InOut
-
-				}
+			case '3': FlxG.camera.fade(1 / 3, FlxG.switchState.bind(play.PlayState.new));
 			case '2':{
-					//FlxTween.tween(menuPlay, {parameter: destinationValue}, duration, {type: FlxTweenType.PINGPONG, easing: FlxEase.circInOut});
-					// Tween: Tween
-					// Ease: circ InOut
-					menuOptions.velocity.y = -300;
-
+					// Options
+					FlxG.camera.fade(1 / 3, FlxG.switchState.bind(OptionsState.new));
 				}
 			case '1':{
-					FlxG.camera.flash(FlxColor.GREEN, 1);
+					// Extras.
+					trace("Extras aren't implemented yet,sorry.");
 				}
-			case '5': FlxG.camera.shake();
-			case '4': Sys.exit(0);
+			case '5':{
+			// Info
+			FlxG.camera.shake();
+			trace("Extra info isn't added yet. Sorry.");
+			}  //
+			case '4': FlxG.camera.fade(1 / 3, FlxG.switchState.bind(TitleState.new));
 		}
 	}
 

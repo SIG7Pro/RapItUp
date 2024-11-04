@@ -10,3 +10,5 @@ desktop.ini
 .directory
 # Placeholder/secret files.
 assets/throwaway/*
+# Other Files
+*.kate-swp
