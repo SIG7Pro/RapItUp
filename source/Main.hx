@@ -24,7 +24,7 @@ class Main extends FlxGame {
 
 		Lib.current.loaderInfo.uncaughtErrorEvents.addEventListener(UncaughtErrorEvent.UNCAUGHT_ERROR, onUncaughtError);
 	
-		var font = Assets.getFont(Paths.font('captura-now-regular'));
+		var font = Assets.getFont(Paths.font('Orbitron/Orbitron Medium'));
 		var bitmap = Assets.getBitmapData(Paths.image('UI/Salem50x50'));
 
 		performance = new Performance(font, bitmap, true, true);

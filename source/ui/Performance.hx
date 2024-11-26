@@ -32,7 +32,7 @@ class Performance extends Sprite {
 	// paddings betweeb elements
 	var paddingX = 10.0;
 	var paddingY = 3.0;
-	
+
 	// graph preference stuff
 	public var graphBarThickness = 3;
 	public var graphBarPadding = 1;
@@ -70,8 +70,6 @@ class Performance extends Sprite {
 		barHeight = Math.ceil(performanceText.textHeight - paddingY);
 
 		var nextX = paddingX;
-
-		}
 
 		var logoSize = 50;
 		if (logoData != null) {
@@ -153,7 +151,7 @@ class Performance extends Sprite {
 		}
 		skipped++;
 	}
-	
+
 	function drawGraph(fps:Int) {
 		var color:Int;
 		fpsHistory.push(fps);
@@ -161,7 +159,7 @@ class Performance extends Sprite {
 		graph.graphics.clear();
 		for (i in 0...fpsHistoryLength) {
 			graph.graphics.moveTo(graphBarThickness * i + i * graphBarPadding, barHeight);
-			
+
 			if (fpsHistory[i] > FlxG.updateFramerate * 0.9) color = 0xff9fe198;
 			else if (fpsHistory[i] > FlxG.updateFramerate * 0.67) color = 0xffefdea2;
 			else if (fpsHistory[i] > FlxG.updateFramerate * 0.5) color = 0xffefbda2;

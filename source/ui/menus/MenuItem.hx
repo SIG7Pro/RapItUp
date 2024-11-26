@@ -20,6 +20,8 @@ import flixel.tweens.FlxTween;
 
 import Math;
 
+import ui.menus.MainMenuState;
+
 // Note: Menu actions are triggered on function Click
 
 class MenuItem extends FlxSubState {
@@ -38,10 +40,11 @@ class MenuItem extends FlxSubState {
 	var menuInfo:FlxSprite;
 	var menuExit:FlxSprite;
 
+		var selectionBanner:FlxSprite;
+
 	var selectAbles:Array<String> = ["Play", "Options", "Extras", "Info", "Exit"];
 	// Shoutouts to https://github.com/Ralsin/FNF-MintEngine/blob/1c681b35e081c1b297f47ed06815503f6ed7089a/source/funkin/menus/MainMenu.hx#L13 which helped me realize :Array<Spring> was.
-	var currentlySelected:Int = 3;
-
+	public static var currentlySelected:Int = 3;
 
 	override function create() {
 
@@ -51,6 +54,13 @@ class MenuItem extends FlxSubState {
 	add(b2aseBG); // baseBG stays still!*/
 
 		trace("Substate MenuItem.hx is active!");
+
+		selectionBanner = new FlxSprite();
+		selectionBanner.loadGraphic("assets/images/UI/Main Menu/Banners/Play.png");
+		//selectionBanner.screenCenter();
+		selectionBanner.x = 732;
+		selectionBanner.y = 203;
+		add(selectionBanner);
 
 		/*
 
@@ -178,6 +188,17 @@ class MenuItem extends FlxSubState {
 
 	}#end
 
+	function changeBanner(type:String){
+	switch(type.toLowerCase()) {
+			case '5': selectionBanner.loadGraphic("assets/images/UI/Main Menu/Banners/Info.png");
+			case '4': selectionBanner.loadGraphic("assets/images/UI/Main Menu/Banners/Exit.png");
+			case '3': selectionBanner.loadGraphic("assets/images/UI/Main Menu/Banners/Play.png");
+			case '2': selectionBanner.loadGraphic("assets/images/UI/Main Menu/Banners/Options.png");
+			case '1': selectionBanner.loadGraphic("assets/images/UI/Main Menu/Banners/Extras.png");
+			}
+
+	}
+
 	override function update(elapsed:Float){
 		super.update(elapsed);
 
@@ -194,8 +215,15 @@ class MenuItem extends FlxSubState {
 		if (FlxG.keys.anyPressed([ENTER, SPACE]))
 		{
 				click(currentlySelected + "");
-				trace(currentlySelected + "");
+				//trace(currentlySelected + "");
 		}
+		if (FlxG.keys.anyPressed( [ESCAPE, BACKSPACE] ) )
+			{
+				trace("Returning to Title.");
+				FlxG.switchState(ui.menus.TitleState.new);
+
+
+			}
 
 			// Original opacity gradient. 1 -> .75 -> .5
 			// Altered opacity gradient. 1 -> .75 -> .5 -> .45 -> 4
@@ -219,6 +247,8 @@ class MenuItem extends FlxSubState {
 					menuOptions.animation.play('itemDeselect');
 					menuExtras.animation.play('itemDeselect');
 
+					changeBanner('5');
+
 					}
 				if (currentlySelected == 4) {
 					// Exit
@@ -239,6 +269,8 @@ class MenuItem extends FlxSubState {
 					menuOptions.animation.play('itemDeselect');
 					menuExtras.animation.play('itemDeselect');
 
+					changeBanner('4');
+
 					}
 				if (currentlySelected == 3) {
 					//Play // Default
@@ -247,6 +279,7 @@ class MenuItem extends FlxSubState {
 						{
 								click('3');
 						}
+						changeBanner('3');
 
 					menuInfo.alpha = 0.50;
 					menuExit.alpha = 0.75;
@@ -264,7 +297,7 @@ class MenuItem extends FlxSubState {
 					}
 				if (currentlySelected == 2) {
 					// Options
-
+						changeBanner('2');
 					if (FlxG.keys.anyPressed([ENTER, SPACE]))
 						{
 								click('2');
@@ -285,6 +318,8 @@ class MenuItem extends FlxSubState {
 					}
 				if (currentlySelected == 1) {
 					// Extras
+
+					changeBanner('1');
 
 					if (FlxG.keys.anyPressed([ENTER, SPACE]))
 						{
@@ -324,7 +359,7 @@ class MenuItem extends FlxSubState {
 	}
 
 	function click(label:String) { //Taken from TitleState, lol.
-		trace("function click is functioning.");
+		//trace("function click is functioning.");
 		switch(label.toLowerCase()) {
 			//case 'prestar': FlxG.camera.fade(1 / 3, FlxG.switchState.bind(MainMenuState.new));
 

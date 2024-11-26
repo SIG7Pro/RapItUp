@@ -33,12 +33,6 @@ Concept main menu:
 */
 
 class MainMenuState extends FlxState {
-	final MENU_DIRECTORY = 'assets/images/UI/Main Menu/';
-	//var blankLabel:String = " ";
-
-	//var imageTraversal:FlxSprite;
-	//var backerTrav:FlxSprite;
-
 	var pinkBG:FlxSprite;
 	var leftPurpGradient:FlxSprite;
 	var sideGradients:FlxSprite;
@@ -48,7 +42,7 @@ class MainMenuState extends FlxState {
 	var menuSelector:FlxSprite; // Replace when ya know how to put multiples.
 	//var userPicture:FlxSprite; // Incase ideas come into tuition.
 		//var userShadow:FlxSprite; // I don't know how to do smooth drop-shadows for sprites and not text.
-	var selectionBanner:FlxSprite;
+
 	var menuLabel:FlxSprite;
 	var userShadow:FlxSprite;
 	var userPicture:FlxSprite;
@@ -57,10 +51,11 @@ class MainMenuState extends FlxState {
 	var userInfo:FlxText;
 	var userHandle:FlxText;
 
+	final MENU_DIRECTORY = 'assets/images/UI/Main Menu/';
+
 	override function create() {
 
 		var pinkBG = new FlxSprite();
-		//pinkBG.loadGraphic(MENU_DIRECTORY + "leftGradient.png");
 		pinkBG.makeGraphic(FlxG.width, FlxG.height, 0xfff9d8ff);
 		pinkBG.screenCenter();
 		add(pinkBG);
@@ -150,13 +145,6 @@ class MainMenuState extends FlxState {
 		//menuSelector.y = 317;
 		//add(menuSelector);
 
-		selectionBanner = new FlxSprite();
-		selectionBanner.loadGraphic(MENU_DIRECTORY + "Banners/Play.png");
-		//selectionBanner.screenCenter();
-		selectionBanner.x = 732;
-		selectionBanner.y = 203;
-		add(selectionBanner);
-
 	// Menu Selections
 		trace("Substate MenuItem.hx intiated!");
 		openSubState(new MenuItem());
@@ -221,28 +209,9 @@ class MainMenuState extends FlxState {
 		menuLabel.x = 702;
 		add(menuLabel);
 
-
-		/*creditsText = new FlxText(30, 94, sys.io.File.getContent('assets/data/v1Credits.txt'));
-		creditsText.setFormat(Paths.font("vcr.ttf"), 17, FlxColor.WHITE, FlxTextAlign.LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-		creditsText.antialiasing = FlxG.save.data.antialiasing;
-		creditsText.borderSize = 1.12;
-		add(creditsText);
-		Debug.logInfo('Credits Text Initiated.');*/
-
 		super.create();
 
 		FlxG.camera.fade(1 / 3, true);
 	}
-
-	/*function click(label:String) {
-		switch(label.toLowerCase()) {
-			case 'play': FlxG.camera.fade(1 / 3, FlxG.switchState.bind(play.PlayState.new));
-			//case 'options': FlxG.camera.fade(1 / 3, FlxG.switchState.bind(OptionsState.new));
-			case 'mooste': FlxG.camera.fade(1 / 3, FlxG.switchState.bind(MoveState.new));
-			#if sys
-			case 'exit': FlxG.camera.fade(1 / 3, FlxG.switchState.bind(TitleState.new));
-			#end
-		}
-	}*/
 
 }
