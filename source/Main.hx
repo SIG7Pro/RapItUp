@@ -1,4 +1,6 @@
 import openfl.Assets;
+import openfl.display.Sprite;
+
 import ui.Performance;
 import haxe.CallStack;
 import openfl.events.UncaughtErrorEvent;
@@ -9,6 +11,11 @@ import flixel.FlxG;
 import lime.system.System;
 import sys.FileSystem;
 
+#if FLX_FOCUS_LOST_SCREEN
+import flixel.system.ui.FlxFocusLostScreen;
+import ui.FocusLost;
+#end
+
 class Main extends FlxGame {
 	public static var performance:Performance;
 	public static var OSVers:String = ("Unknown");
@@ -17,6 +24,7 @@ class Main extends FlxGame {
 		#if linux
 		flixel.FlxG.stage.window.setIcon(lime.graphics.Image.fromFile("assets/images/Icons/App/Aero.png"));
 		#end
+
 
 		#if (hl && !debug)
 		hl.UI.closeConsole();
@@ -29,8 +37,14 @@ class Main extends FlxGame {
 
 		performance = new Performance(font, bitmap, true, true);
 
+
+
 		super(ui.menus.TitleState);
+		//addChild(new FlxGame(0, 0, TitleState));
 		FlxG.stage.addChild(performance);
+
+		@:privateAccess
+		var _customFocusLostScreen = ui.FocusLost;
 	}
 
 	function onUncaughtError(e:UncaughtErrorEvent) {
