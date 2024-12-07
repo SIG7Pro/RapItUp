@@ -127,7 +127,7 @@ class PlayState extends FlxState {
 					childPlayArrow.updateHitbox();
 
 
-					case switch(mPNInsertID) { // Changes X for specified note, and should change color too.
+					/*case switch(mPNInsertID) { // Changes X for specified note, and should change color too.
 							case 0:{
 								childPlayArrow.color = FlxColor.RED;
 								//mPNInsertX = 33;
@@ -164,7 +164,7 @@ class PlayState extends FlxState {
 								//mslInsertX = 1076;
 							}
 					}
-
+*/
 
 
 

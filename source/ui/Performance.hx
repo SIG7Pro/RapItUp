@@ -43,6 +43,7 @@ class Performance extends Sprite {
 	var graph:Shape;
 	var boundData:BitmapData;
 	var logo:Bitmap;
+	var logoShadow:Bitmap;
 
 	// full height of object
 	var fullHeight = 50;
@@ -78,6 +79,13 @@ class Performance extends Sprite {
 			logo.x = nextX;
 			logo.y = (fullHeight - logoSize) / 2;
 			nextX = logo.x + logoSize + paddingX;
+
+			logoShadow = new Bitmap(logoData + "fancy-1");
+			logoShadow.smoothing = logo.smoothing;
+			logoShadow.x = logo.x + 2;
+			logoShadow.y = logo.y + 2;
+			nextX = (logoShadow.x + logoSize + paddingX) + 2;
+
 		}
 
 		if (showAppText) {
@@ -106,6 +114,7 @@ class Performance extends Sprite {
 		// onResize(null);
 		addChild(bound);
 		if (logoData != null) addChild(logo);
+		if (logoData != null) addChild(logoShadow);
 		if (showAppText) addChild(appText);
 		if (showGraph) addChild(graph);
 		addChild(performanceText);

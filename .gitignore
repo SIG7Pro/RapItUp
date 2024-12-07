@@ -10,5 +10,7 @@ desktop.ini
 .directory
 # Placeholder/secret files.
 assets/throwaway/*
+DynamicShadows/
+shortcuts/
 # Other Files
 *.kate-swp

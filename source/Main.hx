@@ -16,15 +16,16 @@ import flixel.system.ui.FlxFocusLostScreen;
 import ui.FocusLost;
 #end
 
-class Main extends FlxGame {
+import ui.menus.TitleState;
+
+class Main extends Sprite {
 	public static var performance:Performance;
 	public static var OSVers:String = ("Unknown");
 
 	public function new() {
-		#if linux
-		flixel.FlxG.stage.window.setIcon(lime.graphics.Image.fromFile("assets/images/Icons/App/Aero.png"));
-		#end
 
+		super();
+		systemIcon();
 
 		#if (hl && !debug)
 		hl.UI.closeConsole();
@@ -33,14 +34,21 @@ class Main extends FlxGame {
 		Lib.current.loaderInfo.uncaughtErrorEvents.addEventListener(UncaughtErrorEvent.UNCAUGHT_ERROR, onUncaughtError);
 	
 		var font = Assets.getFont(Paths.font('Orbitron/Orbitron Medium'));
-		var bitmap = Assets.getBitmapData(Paths.image('UI/Salem50x50'));
+
+		#if debug
+			var bmSuffix:String = "-fancy-2";
+		#else
+			var bmSuffix:String = "";
+		#end
+
+		var bitmap = Assets.getBitmapData(Paths.image('UI/Salem50x50' + bmSuffix));
 
 		performance = new Performance(font, bitmap, true, true);
 
 
 
-		super(ui.menus.TitleState);
-		//addChild(new FlxGame(0, 0, TitleState));
+		//super(ui.menus.TitleState);
+		addChild(new FlxGame(0, 0, TitleState));
 		FlxG.stage.addChild(performance);
 
 		@:privateAccess
@@ -55,5 +63,20 @@ class Main extends FlxGame {
 
 		FlxG.stage.window.alert(error, 'Uncaught Error');
 		Sys.exit(1);
+	}
+
+	function systemIcon(){
+
+		#if linux
+		flixel.FlxG.stage.window.setIcon(lime.graphics.Image.fromFile("assets/images/Icons/App/Aero.png"));
+		#end
+
+		#if windows
+		// Detects for Windows 7 or R8P. Only Windows 7 at the moment.
+		if (LimeSys.platformVersion == 7)){
+			flixel.FlxG.stage.window.setIcon(lime.graphics.Image.fromFile("assets/images/Icons/App/Aero.png"));
+		}
+		#end
+
 	}
 }
