@@ -24,6 +24,8 @@ import js.Browser;
 #if sys
 import sys.io.Process;
 #end
+// mac fixes? / wait no the fix was me renaming stuff i forgot to rename
+import lime.system.System;
 
 /**
 
@@ -104,8 +106,8 @@ class LimeSys
 			#elseif linux
 			__platformLabel = __runProcess("lsb_release", ["-ds"]);
 			#else
-			var name = System.platformName;
-			var version = System.platformVersion;
+			var name = LimeSys.platformName;
+			var version = LimeSys.platformVersion;
 			if (name != null && version != null) __platformLabel = name + " " + version;
 			else if (name != null) __platformLabel = name;
 			#end
