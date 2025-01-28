@@ -45,9 +45,6 @@ class Main extends Sprite {
 
 		performance = new Performance(font, bitmap, true, true);
 
-
-
-		//super(ui.menus.TitleState);
 		addChild(new FlxGame(0, 0, TitleState));
 		FlxG.stage.addChild(performance);
 

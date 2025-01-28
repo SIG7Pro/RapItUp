@@ -24,11 +24,6 @@
 		<set name="BUILD_DIR" value="export/final/64bit" if="final"/>
 	</section>
 
-	<!--<source path="Source"/>
-	<assets path="Assets" rename="assets"/>
-	 Incase the titles of the folders aren't uppercased. Testing.
-	 \
-	 They weren't uppercased for me. -->
 	<source path="source"/>
 	<assets path="assets"/>
 	<assets path="assets/throwaway" rename="assets" unless="release"/>

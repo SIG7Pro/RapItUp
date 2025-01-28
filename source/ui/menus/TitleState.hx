@@ -21,15 +21,15 @@ class TitleState extends FlxState {
 
 		trace(FlxG.random.bool(95));
 
-		var titleText = new FlxText("" + titleMessage);
-		titleText.setFormat(Paths.font('vcr.ttf'), 22, CENTER);
-		titleText.screenCenter(X);
-		titleText.y = 70;
-
 		month = Date.now().getMonth() + 1;
 		day = Date.now().getDate();
 		date = '$month/$day';
 		trace(date);
+
+		var titleText = new FlxText("" + titleMessage);
+		titleText.setFormat(Paths.font('vcr.ttf'), 22, CENTER);
+		titleText.screenCenter(X);
+		titleText.y = 70;
 
 		// Date based extras below.
 				if (date == "4/12") { // Feb 12th
@@ -59,56 +59,22 @@ class TitleState extends FlxState {
 					titleMessage = ("Happy Thanksgiving!\n\nRap-It-Up Prototype\nWork In Progress.");
 				}
 				if (date == "4/1"){ // April Fool's.
-					titleMessage = 'It appears both Salem and Cadence have gone off to pull some pranks.\nOh dear.';
+					titleMessage = '\n\n\n\n\n\n\nIt appears both Salem and Cadence have gone off to pull some pranks.\nOh dear.';
 				}
-		// Note: titleMessage is already configured at the start of the script, so these would not effect if not on these dates.
+		// Note: titleMessage is already configured at the start of the script, so these would have no impact if not on the dates.
+		add(titleText);
 
-
-
-
-
-		//backgroundPurp.loadGraphic = (Paths.image('$TITLE_DIRECTORY/grey/Purple'));
-
-
-		//if (titleMessage != titleDefault){
-		//	var backgroundPurp = new FlxSprite(Paths.image('$TITLE_DIRECTORY/grey/Purple'));
-		//}else{
-			var backgroundPurp = new FlxSprite(Paths.image('$TITLE_DIRECTORY/Purple'));
-		//}
+		var backgroundPurp = new FlxSprite(Paths.image('$TITLE_DIRECTORY/Purple'));
 		backgroundPurp.scale.y = MathUtil.percent(61.33);
 		backgroundPurp.updateHitbox();
 		backgroundPurp.y = -138;
 		add(backgroundPurp);
 
-		//if (titleMessage != titleDefault){
-		//	var backgroundBleu = new FlxSprite(Paths.image('$TITLE_DIRECTORY/grey/Blue'));
-		//}else{
-			var backgroundBleu = new FlxSprite(Paths.image('$TITLE_DIRECTORY/Blue'));
-		//}
+		var backgroundBleu = new FlxSprite(Paths.image('$TITLE_DIRECTORY/Blue'));
 		backgroundBleu.scale.y = MathUtil.percent(19.31);
 		backgroundBleu.updateHitbox();
 		backgroundBleu.y = 360;
 		add(backgroundBleu);
-
-		/*if (date == "4/12") {
-			backgroundPurp.color = 0xFF8b9aff; // Unmentionable colors?..
-			backgroundBleu.color = 0xFF8bc7ff;
-		}
-		if (month == 1 && day == 28){
-			backgroundPurp.color = 0xFF822c85; // Valentine's Day colors.
-			backgroundBleu.color = 0xFF3f339a;
-		}
-		if (month == 7 && day == 20){
-			backgroundBleu.color = 0xFF8bc7ff;
-			backgroundPurp.color = 0xFFffef78;
-		}
-		if (date == "12/25"){ // Dec 25th - Christmas Day
-			backgroundPurp.color = 0xFF2c8562; // Northern lights colors.
-			backgroundBleu.color = 0xFF33579a;
-		}*/
-
-
-
 
 		var white = new FlxSprite(Paths.image('$TITLE_DIRECTORY/White'));
 		white.scale.y = MathUtil.percent(30.14);
@@ -118,11 +84,10 @@ class TitleState extends FlxState {
 
 		var mainFocus = new FlxSprite(Paths.image('$TITLE_DIRECTORY/Fellas'));
 		mainFocus.x = 359;
-		if (date == "4/1"){ // Last Thurs of Nov - Thanksgiving
+		if (date == "4/1"){
 			mainFocus.alpha = 0.01;
 		}
 		add(mainFocus);
-		add(titleText);
 
 		var playButton = new FlxButton('Start Game', click.bind('start'));
 		playButton.setPosition(FlxG.width / 3 - 50 - playButton.width, FlxG.height - playButton.height - 70);
@@ -139,7 +104,6 @@ class TitleState extends FlxState {
 		#end
 
 		super.create();
-
 		FlxG.camera.fade(1 / 3, true);
 	}
 
@@ -148,7 +112,7 @@ class TitleState extends FlxState {
 			case 'start': FlxG.camera.fade(1 / 3, FlxG.switchState.bind(MainMenuState.new));
 			#if sys
 			case 'exit':{
-				trace("Bye bye!");
+				trace("Farewell!");
 				lime.system.System.exit(0);
 			}
 			#end
