@@ -54,8 +54,16 @@ class Performance extends Sprite {
 	var osInfoRetriever:String;
 	var OSVers:String = (LimeSys.platformName + " " + LimeSys.platformVersion); // Might break for Bodhi users but it doesn't really matter for now.
 
+	var expBuildDisplay:String = " ";
+
 	public function new(font:Font, ?logoData:BitmapData, showAppText = false, showGraph = false) {
 		super();
+
+		#if debug
+			expBuildDisplay = "Debug Build";
+		#else if debug && hl
+			expBuildDisplay = "Debug Build (Hashlink.)";
+		#end
 
 		this.showGraph = showGraph;
 
@@ -84,7 +92,7 @@ class Performance extends Sprite {
 			logoShadow.smoothing = logo.smoothing;
 			logoShadow.x = logo.x + 2;
 			logoShadow.y = logo.y + 2;
-			nextX = (logoShadow.x + logoSize + paddingX) + 2;
+			nextX = (logoShadow.x + 2 + logoSize + paddingX + 2) + 2;
 
 		}
 
@@ -96,7 +104,7 @@ class Performance extends Sprite {
 			appText.selectable = true;
 			appText.defaultTextFormat = performanceText.defaultTextFormat;
 			//appText.text = 'Title: ${FlxG.stage.application.meta.get('title')}\nVersion: ${FlxG.stage.application.meta.get('version')}';
-			appText.text = 'Operating System: ' + OSVers + '\nVersion: ${FlxG.stage.application.meta.get('version')}';
+			appText.text = 'Operating System: ' + OSVers + '\nVersion: ${FlxG.stage.application.meta.get('version')}\n$expBuildDisplay';
 			appText.embedFonts = true;
 			nextX = appText.x + appText.textWidth + paddingX;
 		}
@@ -113,8 +121,8 @@ class Performance extends Sprite {
 		bound = new Bitmap();
 		// onResize(null);
 		addChild(bound);
-		if (logoData != null) addChild(logo);
 		if (logoData != null) addChild(logoShadow);
+		if (logoData != null) addChild(logo);
 		if (showAppText) addChild(appText);
 		if (showGraph) addChild(graph);
 		addChild(performanceText);
@@ -155,7 +163,7 @@ class Performance extends Sprite {
 				var fps = times.length;
 				if (showGraph) drawGraph(fps);
 				performanceText.text = 'FPS: $fps\nRAM: $formattedRam\nVRAM: $formattedVram';
-				appText.text = 'Operating System: ' + OSVers + '\nVersion: ${FlxG.stage.application.meta.get('version')}';
+				appText.text = 'Operating System: ' + OSVers + '\nVersion: ${FlxG.stage.application.meta.get('version')}\n$expBuildDisplay'; // Most important one!
 			}
 		}
 		skipped++;
@@ -180,10 +188,11 @@ class Performance extends Sprite {
 	}
 
 	function onResize(e:Event) {
+
 		boundData = new BitmapData(FlxG.stage.stageWidth, fullHeight);
 		boundData.fillRect(new Rectangle(0, 0, FlxG.stage.stageWidth, fullHeight), 0x00000000);
 		bound.bitmapData = boundData;
-		appText.text = 'Operating System: ' + OSVers + '\nVersion: ${FlxG.stage.application.meta.get('version')}';
+		appText.text = 'Operating System: ' + OSVers + '\nVersion: ${FlxG.stage.application.meta.get('version')}\n$expBuildDisplay';
 	}
 
 

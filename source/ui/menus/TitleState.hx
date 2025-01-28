@@ -10,25 +10,105 @@ import Date;
 class TitleState extends FlxState {
 	static final TITLE_DIRECTORY = 'UI/Title Screen';
 	var aprilFools:Bool = false;
-	var titleMessage:String = "Rap-It-Up\nPrototype\n\n\n\n\nWork In Progress.";
+	var titleMessage:String = "Rap-It-Up\nPrototype\n\nWork In Progress.";
+	var titleDefault:String = "Rap-It-Up\nPrototype\n\nWork In Progress.";
 
-	var month:Bool = false;
+	var month:Int;
+	var day:Int;
+	var date:String; // month/day, doesn't include the year
 
 	override function create() {
 
 		trace(FlxG.random.bool(95));
 
-		var purple = new FlxSprite(Paths.image('$TITLE_DIRECTORY/Purple'));
-		purple.scale.y = MathUtil.percent(61.33);
-		purple.updateHitbox();
-		purple.y = -138;
-		add(purple);
+		var titleText = new FlxText("" + titleMessage);
+		titleText.setFormat(Paths.font('vcr.ttf'), 22, CENTER);
+		titleText.screenCenter(X);
+		titleText.y = 70;
 
-		var blue = new FlxSprite(Paths.image('$TITLE_DIRECTORY/Blue'));
-		blue.scale.y = MathUtil.percent(19.31);
-		blue.updateHitbox();
-		blue.y = 360;
-		add(blue);
+		month = Date.now().getMonth() + 1;
+		day = Date.now().getDate();
+		date = '$month/$day';
+		trace(date);
+
+		// Date based extras below.
+				if (date == "4/12") { // Feb 12th
+					titleMessage = ("Sad Pre-Valentine's Day!\n\nRap-It-Up Prototype\nWork In Progress.");
+				}
+				if (month == 1 && day == 28){ // Feb 14th - Valentine's Day
+					titleMessage = ("Happy Valentine's Day!\n\nRap-It-Up Prototype\nWork In Progress.");
+				}
+				if (month == 7 && day == 20){ // July 20th - :)
+					titleMessage = ("What a great day to be alive!\n\nRap-It-Up Prototype\nWork In Progress.");
+				}
+				if (date == "12/24"){ // Dec 24th - Christmas Eve
+					titleMessage = ("Merry Christmas! Make sure you're\non the nice list!\nRap-It-Up Prototype\nWork In Progress.");
+				}
+				if (date == "12/25"){ // Dec 25th - Christmas Day
+					titleMessage = ("Merry Christmas!!\n\nRap-It-Up Pro-ho-hototype\nWork In Progress.");
+				}
+				if ((date == "12/31") || (date == "1/1")){
+				// Jan 1st & Dec 31st - New Year's & New Year's Eve respectively.
+					titleMessage = ("Happy New Year!!\n\nRap-It-Up Prototype\nWork In Progress.");
+				}
+				if (date == "1/26"){ // Jan 6th - Three Kings Day
+					titleMessage = ("Happy Three Kings Day!\n\nRap-It-Up Prototype\nWork In Progress.");
+				}
+				// Note: getDate is the day of the month yet getDay is the day of the week. I don't know why it's like this.
+				if (month == 11 && Date.now().getDay() == 4){ // Last Thurs of Nov - Thanksgiving
+					titleMessage = ("Happy Thanksgiving!\n\nRap-It-Up Prototype\nWork In Progress.");
+				}
+				if (date == "4/1"){ // April Fool's.
+					titleMessage = 'It appears both Salem and Cadence have gone off to pull some pranks.\nOh dear.';
+				}
+		// Note: titleMessage is already configured at the start of the script, so these would not effect if not on these dates.
+
+
+
+
+
+		//backgroundPurp.loadGraphic = (Paths.image('$TITLE_DIRECTORY/grey/Purple'));
+
+
+		//if (titleMessage != titleDefault){
+		//	var backgroundPurp = new FlxSprite(Paths.image('$TITLE_DIRECTORY/grey/Purple'));
+		//}else{
+			var backgroundPurp = new FlxSprite(Paths.image('$TITLE_DIRECTORY/Purple'));
+		//}
+		backgroundPurp.scale.y = MathUtil.percent(61.33);
+		backgroundPurp.updateHitbox();
+		backgroundPurp.y = -138;
+		add(backgroundPurp);
+
+		//if (titleMessage != titleDefault){
+		//	var backgroundBleu = new FlxSprite(Paths.image('$TITLE_DIRECTORY/grey/Blue'));
+		//}else{
+			var backgroundBleu = new FlxSprite(Paths.image('$TITLE_DIRECTORY/Blue'));
+		//}
+		backgroundBleu.scale.y = MathUtil.percent(19.31);
+		backgroundBleu.updateHitbox();
+		backgroundBleu.y = 360;
+		add(backgroundBleu);
+
+		/*if (date == "4/12") {
+			backgroundPurp.color = 0xFF8b9aff; // Unmentionable colors?..
+			backgroundBleu.color = 0xFF8bc7ff;
+		}
+		if (month == 1 && day == 28){
+			backgroundPurp.color = 0xFF822c85; // Valentine's Day colors.
+			backgroundBleu.color = 0xFF3f339a;
+		}
+		if (month == 7 && day == 20){
+			backgroundBleu.color = 0xFF8bc7ff;
+			backgroundPurp.color = 0xFFffef78;
+		}
+		if (date == "12/25"){ // Dec 25th - Christmas Day
+			backgroundPurp.color = 0xFF2c8562; // Northern lights colors.
+			backgroundBleu.color = 0xFF33579a;
+		}*/
+
+
+
 
 		var white = new FlxSprite(Paths.image('$TITLE_DIRECTORY/White'));
 		white.scale.y = MathUtil.percent(30.14);
@@ -36,62 +116,13 @@ class TitleState extends FlxState {
 		white.y = 499;
 		add(white);
 
-		if (Date.now().getMonth() != 3 && Date.now().getDate() != 0){ // Adds main focus content if it isn't April Fools Day.
-			var mainFocus = new FlxSprite(Paths.image('$TITLE_DIRECTORY/Fellas'));
-			mainFocus.x = 359;
-			add(mainFocus);
-
-
-			// Date based extras below.
-				if (Date.now().getMonth() == 1 && Date.now().getDate() == 11) { // Feb 12th
-				titleMessage == ("Sad Pre-Valentine's Day!\n\nRap-It-Up\nPrototype\n\n\nWork In Progress.");
-				purple.color = 0x8b9aff; // Unmentionable colors..
-				blue.color = 0x8bc7ff;
-				}
-				if (Date.now().getMonth() == 1 && Date.now().getDate() == 13){ // Feb 14th - Valentine's Day
-				titleMessage == ("Happy Valentine's Day!\n\nRap-It-Up\nPrototype\n\n\nWork In Progress.");
-				purple.color = 0x822c85; // Valentine's Day colors.
-				blue.color = 0x3f339a;
-				}
-				if (Date.now().getMonth() == 6 && Date.now().getDate() == 19){ // July 20th - :)
-				titleMessage == ("What a great day to be alive!\n\nRap-It-Up\nPrototype\n\n\nWork In Progress.");
-				blue.color = 0x8bc7ff;
-				purple.color = 0xffef78;
-				}
-				if (Date.now().getMonth() == 11 && Date.now().getDate() == 23){ // Dec 24th - Christmas Eve
-				titleMessage == ("Merry Christmas! Make sure you're\non the nice list!\nRap-It-Up\nPrototype\n\n\nWork In Progress.");
-				}
-				if (Date.now().getMonth() == 11 && Date.now().getDate() == 24){ // Dec 25th - Christmas Day
-				titleMessage == ("Merry Christmas!!\n\nRap-It-Up\nPrototype\n\n\nWork In Progress.");
-				purple.color = 0x2c8562; // Northern lights colors.
-				blue.color = 0x33579a;
-				}
-				if ((Date.now().getMonth() == 11 && Date.now().getDate() == 30) || (Date.now().getMonth() == 0 && Date.now().getDay() == 0)){
-				// Jan 1st & Dec 31st - New Year's & New Year's Eve respectively.
-				titleMessage == ("Happy New Year!!\n\nRap-It-Up\nPrototype\n\n\nWork In Progress.");
-				}
-				if (Date.now().getMonth() == 0 && Date.now().getDate() == 5){ // Jan 6th - Three Kings Day
-				titleMessage == ("Happy Three Kings Day!\n\nRap-It-Up\nPrototype\n\n\nWork In Progress.");
-				}
-				// Note: getDate is the day of the month yet getDay is the day of the week. I don't know why it's like this.
-				if (Date.now().getMonth() == 10 && Date.now().getDate() == 4){ // Last Thurs of Nov - Thanksgiving
-				titleMessage == ("Happy Thanksgiving!\n\nRap-It-Up\nPrototype\n\n\nWork In Progress.");
-				}
-			// Note: titleMessage is already configured at the start of the script, so these would not effect if not on these dates.
-			var titleText = new FlxText("" + titleMessage);
-			titleText.setFormat(Paths.font('vcr.ttf'), 22, CENTER);
-			titleText.screenCenter(X);
-			add(titleText);
-		}else{
-			titleMessage = 'It appears both Salem and Cadence have gone off to pull some pranks.\nOh dear.';
-			var aprilText = new FlxText(titleMessage);
-			aprilText.setFormat(Paths.font('vcr.ttf'), 22, CENTER);
-			aprilText.screenCenter();
-			add(aprilText);
+		var mainFocus = new FlxSprite(Paths.image('$TITLE_DIRECTORY/Fellas'));
+		mainFocus.x = 359;
+		if (date == "4/1"){ // Last Thurs of Nov - Thanksgiving
+			mainFocus.alpha = 0.01;
 		}
-
-
-
+		add(mainFocus);
+		add(titleText);
 
 		var playButton = new FlxButton('Start Game', click.bind('start'));
 		playButton.setPosition(FlxG.width / 3 - 50 - playButton.width, FlxG.height - playButton.height - 70);
