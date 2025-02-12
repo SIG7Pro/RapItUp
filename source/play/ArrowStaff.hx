@@ -13,12 +13,13 @@ class ArrowStaff extends FlxSprite {
 	public var insertedY:Float;
 	public var sizeX:Int;
 	public var sizeY:Int;
+	public var noteAirVelocity:Float;
 
 	public var insertedColor:FlxColor;
 
-	var StatIcons:FlxSprite;
+	//var StatIcons:FlxSprite;
 
-     public function new(id:Int, insertedX:Float, insertedY:Float, sizeX:Int, sizeY:Int, insertedColor:FlxColor) {
+     public function new(id:Int, insertedX:Float, insertedY:Float, sizeX:Int, sizeY:Int, insertedColor:FlxColor, noteAirVelocity:Float) {
             super();
 
             x = insertedX;
@@ -26,6 +27,7 @@ class ArrowStaff extends FlxSprite {
 
             makeGraphic(sizeX, sizeY, insertedColor);
 
+            velocity.y = noteAirVelocity;
 
             //makeGraphic(154, 157, 0xff87a3ad);
             updateHitbox();

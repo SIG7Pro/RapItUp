@@ -18,7 +18,7 @@ import flixel.input.keyboard.FlxKey;
 
 import Std;
 
-//import play.Conductor;
+import play.ConductorFV;
 import play.ArrowStaff;
 
 // Reference code: https://github.com/yophlox/Moon4K/blob/main/source/states/PlayState.hx
@@ -57,16 +57,15 @@ class PlayState extends FlxState {
 		sprite.makeGraphic(FlxG.width, FlxG.height, FlxColor.BROWN);
 		sprite.screenCenter();
 		sprite.alpha = 0.5;
-		add(sprite); // Just so the background behind the placeholder graphics isn't completely black.
+		add(sprite);
 
 		strumLine = new FlxTypedGroup<FlxSprite>();
 		add(strumLine);
-		
-		//playArrows = new FlxTypedGroup<FlxSprite>();
-		//add(playArrows);
+		playArrows = new FlxTypedGroup<FlxSprite>();
+		add(playArrows);
 
-		var hpStuff = new HealthBar();
-		add (hpStuff);
+		//var hpStuff = new HealthBar();
+		//add (hpStuff);
 
 		hudCam = new FlxCamera();
 		hudCam.bgColor.alpha = 0;
@@ -77,7 +76,7 @@ class PlayState extends FlxState {
 		FlxG.cameras.add(gameCam);
 
 		makeStrumline();
-		makePlayNote();
+		makePlayNote(3, 2);
 
 		super.create();
 
@@ -91,16 +90,15 @@ class PlayState extends FlxState {
 			{
 					//var babyArrow:FlxSprite = new FlxSprite(50 + (120 * j) + (FlxG.width / 1.875) * i, isUpscroll ? 50 : FlxG.height - 150).makeGraphic(112, 112, 0xff87a3ad);
 					// (id:Int, insertedX:Int, insertedY:Int, sizeX:Int, sizeY:Int, insertedColor:FlxColor) ArrowStaff
-					var mslInsertID:Int = (i * j);
-					var mslInsertX:Float = (33 + (120 * j) + (FlxG.width / 1.875) * i);
-					var mslInsertY:Float = (isUpscroll ? 60 : FlxG.height - 150);
+					var makeStrumInsertID:Int = (i * j);
+					var makeStrumInsX:Float = (33 + (120 * j) + (FlxG.width / 1.875) * i);
+					var makeStrumInsY:Float = (isUpscroll ? 50 : FlxG.height - 150);
 					
 
 					// x = 50 + (120 * j) + (FlxG.width / 1.875) * i
 					// y = isUpscroll ? 50 : FlxG.height - 150 // If upscroll then Y = 50, if downscroll then 150.
 
-					//babyArrow.alpha = 0.5;
-					var babyArrow:ArrowStaff = new ArrowStaff(mslInsertID, mslInsertX, mslInsertY, 154, 157, 0xff87a3ad);
+					var babyArrow:ArrowStaff = new ArrowStaff(makeStrumInsertID, makeStrumInsX, makeStrumInsY, 154, 157, 0xff87a3ad, 0);
 					babyArrow.scale.set(0.75, 0.75);
 					babyArrow.updateHitbox();
 					strumLine.add(babyArrow);
@@ -108,82 +106,62 @@ class PlayState extends FlxState {
 		}
 	}	
 
+	//public var makePlayNotesInsX:Float;
 
-
-	public function makePlayNote()
+	public function makePlayNote(value:Int, speed:Float) // 1-4 Opp / 5-8 Play //
 	{
-		for (i in 0...2)
-		{
-			for (j in 0...4)
-			{
-					//var babyArrow:FlxSprite = new FlxSprite(50 + (120 * j) + (FlxG.width / 1.875) * i, isUpscroll ? 50 : FlxG.height - 150).makeGraphic(112, 112, 0xff87a3ad);
-					// (id:Int, insertedX:Int, insertedY:Int, sizeX:Int, sizeY:Int, insertedColor:FlxColor) ArrowStaff
-					var mPNInsertID:Int = (i * j);
-					var mPNInsertX:Float = (33 + (120 * j) + (FlxG.width / 1.875) * i);
-					var mPNInsertY:Float = (isUpscroll ? -150 : FlxG.height + 150);
+		//for (i in 0...2){
+			//for (j in 0...4){
+					scrollSpeed = speed;
 
-					var childPlayArrow:ArrowStaff = new ArrowStaff(mPNInsertID, mPNInsertX, mPNInsertY, 154, 157, 0xff87a3ad);
+					var makePlayNotesID:Int = value;
+					var makePlayNotesInsX:Float = 0;
+
+					switch makePlayNotesID { // Sets the X probably.
+						case 1: makePlayNotesInsX = (33 + (120 * 1) + (FlxG.width / 1.875) * 0); // Lazy but maybe worth it.
+						case 2: makePlayNotesInsX = (33 + (120 * 2) + (FlxG.width / 1.875) * 0);
+						case 3: makePlayNotesInsX = (33 + (120 * 3) + (FlxG.width / 1.875) * 0);
+						case 4: makePlayNotesInsX = (33 + (120 * 4) + (FlxG.width / 1.875) * 0);
+
+						case 5: makePlayNotesInsX = (33 + (120 * 1) + (FlxG.width / 1.875) * 1);
+						case 6: makePlayNotesInsX = (33 + (120 * 2) + (FlxG.width / 1.875) * 1);
+						case 7: makePlayNotesInsX = (33 + (120 * 3) + (FlxG.width / 1.875) * 1);
+						case 8: makePlayNotesInsX = (33 + (120 * 4) + (FlxG.width / 1.875) * 1);
+						//default: default-expression;
+					}
+					var makePlayNotesInsY:Float;
+
+					var childPlayArrow:ArrowStaff = new ArrowStaff(makePlayNotesID, makePlayNotesInsX, -10, 154, 157, 0xff87a3ad, scrollSpeed);
 					childPlayArrow.scale.set(0.75, 0.75);
 					childPlayArrow.updateHitbox();
 
 
-					/*case switch(mPNInsertID) { // Changes X for specified note, and should change color too.
-							case 0:{
-								childPlayArrow.color = FlxColor.RED;
-								//mPNInsertX = 33;
-							}
-							case 1:{
-								childPlayArrow.color = FlxColor.RED;
-								//mslInsertX = 153;
-							}
-							case 2:{
-								childPlayArrow.color = FlxColor.RED;
-								//mslInsertX = 273;
-							}
-							case 3:{
-								childPlayArrow.color = FlxColor.RED;
-								//mslInsertX = 293;
-							}
 
-							// Player notes.
-
-							case 4:{
-								childPlayArrow.color = FlxColor.RED;
-								//mslInsertX = 716;
-							}
-							case 5:{
-								childPlayArrow.color = FlxColor.RED;
-								//mslInsertX = 836;
-							}
-							case 6:{
-								childPlayArrow.color = FlxColor.RED;
-								//mslInsertX = 956;
-							}
-							case 7:{
-								childPlayArrow.color = FlxColor.RED;
-								//mslInsertX = 1076;
-							}
+					if (isUpscroll){
+						childPlayArrow.y = FlxG.height + (childPlayArrow.height) - 200;
+					}else{
+						childPlayArrow.y = (FlxG.height + (childPlayArrow.height) - 200) * -1;
 					}
-*/
+
+					var playNoteSpawnY:Float = childPlayArrow.y;
+
+					trace(childPlayArrow.y + ' start height');
+					playArrows.add(childPlayArrow);
+
+					playArrows.members[0].color = FlxColor.CYAN;
+					//playArrows.members[0].velocity.y = scrollSpeed;
 
 
 
-
-					strumLine.add(childPlayArrow);
-			}
-		}
+			//}
+		//}
 	}
 
-
-
-
-
-
-	
 	public function keyCheck(data:Int)
 	{
 		if (FlxG.keys.anyPressed(mainKeys[data])) 
 		{
+			trace("Hit");
 			strumLine.members[data+4].scale.set(0.65, 0.65);
 			
 			if (canBeHit = true) 
@@ -199,54 +177,52 @@ class PlayState extends FlxState {
 			
 		} 
 		else {
-			strumLine.members[data+4].scale.set(1, 1);
+			strumLine.members[data+4].scale.set(0.75, 0.75);
 		
 		}
-		
-	}			
+	}
 
 	override function update(elapsed:Float){
 	
 		if (FlxG.keys.anyPressed( [ESCAPE, BACKSPACE] ) )
 			{
 				FlxG.switchState(ui.menus.MainMenuState.new);
-				FlxG.stage.window.title = "Rap-It-Up";
 				trace("Returning to Title.");
 			}
 		
-		if (FlxG.keys.justPressed.X)
+		if (FlxG.keys.justPressed.W)
 			{
 				//
+				makePlayNote(5,2);
+				trace("Launch!");
 			}
 
 		changeColor();
+		//keyCheck(1);
+		for (i in 0...mainKeys.length) {
+			keyCheck(i);
+		}
 
 	}
 
 	function changeColor(){
 
-		/*case switch(babyArrow.id)
-			{
-			case 1: babyArrow.color = FlxColor.RED;
-			case 2: babyArrow.color = FlxColor.ORANGE;
-			case 3: babyArrow.color = FlxColor.YELLOW;
-			case 4: babyArrow.color = FlxColor.GREEN;
-			case 5: babyArrow.color = FlxColor.BLUE;
-			// Stay unchanged for 6.
-			case 7: babyArrow.color = FlxColor.PURPLE;
-			case 8: babyArrow.color = FlxColor.WHITE;
-			}*/
-			//todo: make cols from back
-
 			// Strum members start from zero.
 			strumLine.members[0].color = FlxColor.RED;
-			strumLine.members[1].color = FlxColor.ORANGE;
-			strumLine.members[2].color = FlxColor.YELLOW;
-			strumLine.members[3].color = FlxColor.GREEN;
-			strumLine.members[4].color = FlxColor.BLUE;
+			strumLine.members[1].color = FlxColor.RED;
+			strumLine.members[2].color = FlxColor.RED;
+			strumLine.members[3].color = FlxColor.RED;
+			strumLine.members[4].color = FlxColor.GREEN;
+			strumLine.members[5].color = FlxColor.GREEN;
+			strumLine.members[6].color = FlxColor.GREEN;
+			strumLine.members[7].color = FlxColor.GREEN;
 
-			strumLine.members[6].color = FlxColor.PURPLE;
-			strumLine.members[7].color = FlxColor.WHITE;
+	}
+
+	function makePlayArrowsMove(){
+
+			// Strum members start from zero.
+			//playArrows.members[cur].velocity.y;
 
 	}
 }

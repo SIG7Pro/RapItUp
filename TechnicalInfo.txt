@@ -1,0 +1,47 @@
+RAP-IT-UP
+Technical Specifications
+
+Designed for: HTML5, Desktop.
+Potential Future Targets: Consoles, SerenityOS, Mobile.
+
+These are all subject to change, especially since how primitive the game is at the moment.
+For those who would like to add information, feel free to! (If done via a PR, please show proof.)
+
+HOW TO CHECK?
+
+This goes over how to quickly identify and check your operating system version.
+- Windows:
+    - If you have a key inbetween the Ctrl and Alt keys that looks like a window or a flag, press it. If you see a menu pop up, then for sure you have a Windows device. For extra clarification, press the Windows key and R at the same time and then type "winver" and you should see the specific version of Windows you have.
+- macOS:
+    - If you see a bar at the top of the screen (whether it be by default or having to move your cursor up there), click the button on the top left that looks like an apple, and press "About this Mac", because macOS is pretty obvious.
+- Linux:
+    - This depends from distribution and versions. The usual way is to find the default terminal app (like Konsole, Terminology, etc) and type something like "cat /etc/os-release". (I think this may differ between distros, so for a more universal method type: "sudo apt install neofetch; neofetch" for more neat info.)
+
+
+MINUMUM SPECS
+    Linux (Compiling):
+        - Any 'modern' version of the Kernel.
+        - If it can run Haxe, it can work.
+
+    macOS (Partially Tested):
+        - Potentially macOS High Sierra (10.13.x, Compiling)
+            - [I don't know if the current version of Haxe runs on it, but if you can compile Haxe, you can compile the game too.]
+        - macOS Sierra (10.12.x, Playing)
+
+    Windows (Hardly Tested):
+        - Windows 10 (According to compile guides, it's easiest to get the required things with 10, but may be possible on Windows 7-8.1)
+        - Windows 7 (Running)
+
+PREFERRED SPECS
+    Linux:
+        - Any Ubuntu/Debian deriative. (Confirmed to work on Bodhi Linux and KDE Neon)
+        - A desktop that isn't KDE Plasma. (Visual errors around transparent windows and preopened ones may occur, but if that doesn't matter to you, then that's fine.)
+
+    macOS:
+        - Preferably macOS Sierra (10.12) or higher, runs fine on Monterey (12).
+
+    Windows:
+        - Windows 10 or higher. Has hardly been tested, but two former developers have tested and compiled on Windows, and it seems to work there.
+
+    HTML5 (Untested):
+        - A web browser capable of running standard JavaScript, such as Google Chrome or Firefox. (Subject to change.)

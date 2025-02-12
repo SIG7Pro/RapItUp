@@ -55,4 +55,9 @@
 
 	<haxeflag name="--macro" value="util.macro.Platform.checkForTested()"/>
 
+	<!-- Alters the messages/warnings. -->
+	<!-- pretty (hf default), indent, classic (haxe default) -->
+	<haxedef name="message.reporting" unless="ncw" value="indent" />
+	<haxedef name="message.reporting" if="ncw" value="classic" />
+
 </project>

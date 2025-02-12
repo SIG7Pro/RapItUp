@@ -26,42 +26,33 @@ class TitleState extends FlxState {
 		date = '$month/$day';
 		trace(date);
 
+		// Date based extras below.
+
+			if (month == 11 && Date.now().getDay() == 4){ // Last Thurs of Nov - Thanksgiving
+					titleMessage = ("Happy Thanksgiving!\n\nRap-It-Up Prototype\nWork In Progress.");
+			}
+			switch (date) {
+				case "2/12": titleMessage = ("Sad Pre-Valentine's Day!\n\nRap-It-Up Prototype\nWork In Progress.");
+				case "2/14": titleMessage = ("Happy Valentine's Day!\n\nRap-It-Up Prototype\nWork In Progress.");
+				case "7/20": titleMessage = ("What a great day to be alive!\n\nRap-It-Up Prototype\nWork In Progress.");
+				case "12/24": titleMessage = ("Merry Christmas! Make sure you're\non the nice list!\nRap-It-Up Prototype\nWork In Progress.");
+				case "12/25": titleMessage = ("Merry Christmas!!\n\nRap-It-Up Pro-ho-hototype\nWork In Progress.");
+				case "12/31": titleMessage = ("Happy New Year!!\n\nRap-It-Up Prototype\nWork In Progress.");
+				case "1/1": titleMessage = ("Happy New Year!!\n\nRap-It-Up Prototype\nWork In Progress.");
+				case "1/6": titleMessage = ("Happy Three Kings Day!\n\nRap-It-Up Prototype\nWork In Progress.");
+				case "4/1": titleMessage = '\n\n\n\n\n\n\nIt appears both Salem and Cadence have gone off to pull some pranks.\nOh dear.';
+				default:{
+					if (titleMessage != titleDefault){
+						titleMessage = titleDefault;
+					}
+				}
+			}
+		// Note: titleMessage is already configured at the start of the script, so these would have no impact if not on the dates.
+
 		var titleText = new FlxText("" + titleMessage);
 		titleText.setFormat(Paths.font('vcr.ttf'), 22, CENTER);
 		titleText.screenCenter(X);
 		titleText.y = 70;
-
-		// Date based extras below.
-				if (date == "4/12") { // Feb 12th
-					titleMessage = ("Sad Pre-Valentine's Day!\n\nRap-It-Up Prototype\nWork In Progress.");
-				}
-				if (month == 1 && day == 28){ // Feb 14th - Valentine's Day
-					titleMessage = ("Happy Valentine's Day!\n\nRap-It-Up Prototype\nWork In Progress.");
-				}
-				if (month == 7 && day == 20){ // July 20th - :)
-					titleMessage = ("What a great day to be alive!\n\nRap-It-Up Prototype\nWork In Progress.");
-				}
-				if (date == "12/24"){ // Dec 24th - Christmas Eve
-					titleMessage = ("Merry Christmas! Make sure you're\non the nice list!\nRap-It-Up Prototype\nWork In Progress.");
-				}
-				if (date == "12/25"){ // Dec 25th - Christmas Day
-					titleMessage = ("Merry Christmas!!\n\nRap-It-Up Pro-ho-hototype\nWork In Progress.");
-				}
-				if ((date == "12/31") || (date == "1/1")){
-				// Jan 1st & Dec 31st - New Year's & New Year's Eve respectively.
-					titleMessage = ("Happy New Year!!\n\nRap-It-Up Prototype\nWork In Progress.");
-				}
-				if (date == "1/26"){ // Jan 6th - Three Kings Day
-					titleMessage = ("Happy Three Kings Day!\n\nRap-It-Up Prototype\nWork In Progress.");
-				}
-				// Note: getDate is the day of the month yet getDay is the day of the week. I don't know why it's like this.
-				if (month == 11 && Date.now().getDay() == 4){ // Last Thurs of Nov - Thanksgiving
-					titleMessage = ("Happy Thanksgiving!\n\nRap-It-Up Prototype\nWork In Progress.");
-				}
-				if (date == "4/1"){ // April Fool's.
-					titleMessage = '\n\n\n\n\n\n\nIt appears both Salem and Cadence have gone off to pull some pranks.\nOh dear.';
-				}
-		// Note: titleMessage is already configured at the start of the script, so these would have no impact if not on the dates.
 		add(titleText);
 
 		var backgroundPurp = new FlxSprite(Paths.image('$TITLE_DIRECTORY/Purple'));

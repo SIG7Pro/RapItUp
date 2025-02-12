@@ -5,12 +5,14 @@ class Platform {
 	static final MSG_TESTED   = 'Welcome!';
 	
 	public static macro function checkForTested():Array<haxe.macro.Expr.Field> {
-		#if (bsd || neko || js || ios || android || html5 || blackberry || mac) // Note to self: I accidentally wiped my PC a while back and can't run macOS, hence why its temporarily here.
-		haxe.macro.Compiler.define('untested');
-		Sys.println(MSG_UNTESTED);
+		// System Checking
+		#if (bsd || neko || js || ios || android || html5 || blackberry || mac)
+			haxe.macro.Compiler.define('untested');
+			Sys.println(MSG_UNTESTED);
 		#else
-		haxe.macro.Compiler.define('tested');
-		Sys.println(MSG_TESTED);
+			haxe.macro.Compiler.define('tested');
+			Sys.println(MSG_TESTED);
+		#end
 		// Watermark Displaying
 			#if NO_COMPILE_WATERMARK
 				Sys.println("Compile watermark disabled.");
@@ -22,7 +24,7 @@ class Platform {
 				Sys.println("Debug text may be shown on some states, please take note of that.");
 			#end
 
-		#end
+
 
 		return haxe.macro.Context.getBuildFields();
 	}

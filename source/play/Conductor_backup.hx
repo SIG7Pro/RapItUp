@@ -8,16 +8,23 @@ class Conductor {
 
 	time += elapsed * 1000;
 	// if the difference is bigger than or equal to 25 ms resync
-	if (Math.abs(time - inst.time) >= 25) time = inst.time;
-
+	if (Math.abs(time - inst.time) >= 25){
+		time = inst.time;
+	}
 	var curBeat:Int = bpmChange.beat + Math.floor((time - bpmChange.time) / crotchet);
 	var curStep:Int = Math.floor(curBeat * 4);
 	var curMeasure:Int = Math.floor(curBeat * 0.25);
 
-	if (oldStep != curStep) onStepHit();
-	if (oldBeat != curBeat) onBeatHit();
-	if (oldMeasure != curMeasure) onMeasureHit();
+	if (oldStep != curStep){
+		onStepHit();
+	}
+	if (oldBeat != curBeat){
+		onBeatHit();
+	}
+	if (oldMeasure != curMeasure){
+		onMeasureHit();
 	//
+	}
 
 
 }

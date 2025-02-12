@@ -28,7 +28,7 @@ class Conductor extends flixel.FlxBasic {
 
 	public function new() {
 		super();
-		self = this;
+		//self = this;
 		visible = false;
 		reset();
 	}

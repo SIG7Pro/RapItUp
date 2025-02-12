@@ -7,12 +7,10 @@ Feel free to contribute!
 ______________________
 
 Hotkeys:
-X - Spawn notes.
-T/U - Select. (Main Menu.)
-Esc/Backsapce - Return (Ingame and in options.)
-I/R - Add HP + Score
-K/F - Remove HP + Score
-O/P - Head to (WIP) options. (When ingame.)
+WASD - Spawn notes.
+Arrow Keys - Hit notes. (Both go to the right side of the screen.)
+
+Esc/Backsapce - Head to Title/Menu
 
 `/~ - Enable HaxeFlixel debugger. (When compiled for debug.)
 
